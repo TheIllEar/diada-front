@@ -1,0 +1,23 @@
+<nav class="nav-bar" data-app-nav-container>
+  <div class="toggle-menu" data-app-nav-btn>
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+    <div class="line line3"></div>
+  </div>
+  <div class="nav-bar__content">
+    <ul class="nav-list">
+      <!-- @todo перебирать ссылки форычом/active -->
+      <li class="nav-list__item"><a href="/" class="nav-link active">Home</a></li>
+      <li class="nav-list__item"><a href="/works" class="nav-link">Works</a></li>
+      <li class="nav-list__item"><a href="/reviews" class="nav-link">Reviews</a></li>
+      <li class="nav-list__item"><a href="/about" class="nav-link">About</a></li>
+    </ul>
+    <div class="nav-bar__footer">
+      <div class="mail">
+        <a href="mailto:diada@gmail.com" class="mail__link">diada@gmail.com</a>
+      </div>
+      {% include "components/social_list.html" %}
+    </div>
+  </div>
+</nav>
+<div class="nav-shape" data-app-shape></div>

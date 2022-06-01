@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head-->
+  {% include "components/head.html" %}
+
+  <body>
+    <!-- Header-->
+    {% include "components/header.html" %}
+
+    <!-- @todo Передавать ссылки -->
+    {% include "components/nav.html" %}
+
+    <!-- Main content-->
+    {% block content %} {% endblock %}
+
+    <!-- Footer-->
+    {% include "components/footer.html" %}
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<section class="catalog">
+    <div class="catalog-cards">
+        {% for item in items %}
+            {% include 'components/card.html' %}
+        {% endfor %}
+    </div>
+    <div class="catalog-all">
+        <a href="#" class="catalog-all__link">All Works</a>
+    </div>
+</section>

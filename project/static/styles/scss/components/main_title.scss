@@ -1,0 +1,26 @@
+.main {
+  &-title {
+    text-align: center;
+    padding: 40px 0;
+    h1 {
+      font-size: 20px;
+      background: radial-gradient(circle farthest-corner at center, $color_orange_light, $color_accent 25%);
+      animation: preloader 10s ease infinite;
+      background-size: 300%;
+      background-clip: text;
+      color: transparent;
+    }
+    @include breakpoint($tablet) {
+      padding: 50px 0;
+      h1 {
+        font-size: 27px;
+      }
+    }
+    @include breakpoint($desktop) {
+      padding: 60px 0;
+      h1 {
+        font-size: 33px;
+      }
+    }
+  }
+}

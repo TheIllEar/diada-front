@@ -1,0 +1,15 @@
+.container-about {
+  .about {
+    
+  }
+  @include breakpoint($tablet) {
+    .about {
+      
+    }
+  }
+  @include breakpoint($desktop) {
+    .about {
+      
+    }
+  }
+}

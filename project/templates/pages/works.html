@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="container container-works" data-app-container>
+    <div class="main-title">
+      <!-- @todo <h1>{{home.heading}}</h1> -->
+      <h1>iy dadi dai dayda</h1>
+    </div>
+    {% set items = [
+      {title: "Project Name 1", service: "Sound Design", img: "https://freight.cargo.site/w/750/i/ee42176745e358ca3cb0aa52e1306552eb29cf8f67fd0f7e61be0b5dcef2e0be/1.Dancer_AI.png"},
+      {title: "Project Name 2", service: "Sound Design", img: "https://freight.cargo.site/w/750/i/046feadf9715e9fec5a15dbdcbc4559693e540ac94475eec009056ce52c85904/Wot.png"},
+      {title: "Project Name 3", service: "Sound Design", img: "https://freight.cargo.site/w/1000/i/300cb3884208f9704a173e42029c3aa5df32d020c67389e0572ba35ce6953af3/Screen-Shot-2021-10-11-at-16.15.22.png"},
+      {title: "Project Name 4", service: "Sound Design", img: "https://freight.cargo.site/w/750/i/35b55e78da330cd1fb2e1082aeffd7cba6490ccb5454f3c2409b3423f495a679/Screen-Shot-2021-10-11-at-16.37.47.png"},
+      {title: "Project Name 5", service: "Sound Design", img: "https://i.picsum.photos/id/406/900/600.jpg?hmac=ByGoCnErKmu9s18LZonSDTW455boKoL4kMBErf8fA7M"},
+      {title: "Project Name 6", service: "Sound Design", img: "https://i.picsum.photos/id/523/900/600.jpg?hmac=96Ixps3wJO7qmxqn32xGG2fNbTARFvO7uIa6kNXF9IE"},
+      {title: "Project Name 7", service: "Sound Design", img: "https://i.picsum.photos/id/107/900/600.jpg?hmac=z2lg54Yjh-UYA1iDvm06UmuPomKHC5L3x2FXozUc_30"},
+      {title: "Project Name 8", service: "Sound Design", img: "https://wallsdesk.com/wp-content/uploads/2016/12/De-La-Soul-High-Quality-Wallpapers.jpg"},
+      {title: "Project Name 9", service: "Sound Design", img: "https://get.wallhere.com/photo/Darling-in-the-FranXX-Code-002-1813589.jpg"},
+      {title: "Project Name 10", service: "Sound Design", img: "https://dj.ru/images/news/99/1000499_f5TfPVUeXaAj024m6KR2Kb6WWeaa7YpH.jpg"},
+      {title: "Project Name 11", service: "Sound Design", img: "https://i.picsum.photos/id/454/1200/800.jpg?hmac=R1obQECuT5GN15J3RJVXqRx-SQOD94xoJCbzfDvSNt8"},
+      {title: "Project Name 12", service: "Sound Design", img: "https://i.picsum.photos/id/451/1200/800.jpg?hmac=ET5-76vUzpTVeMfroy3DBSnpK0VX1Iq9zx5Ln-p2RGo"},
+      {title: "Project Name 13", service: "Sound Design", img: "https://i.picsum.photos/id/158/1200/800.jpg?hmac=tESNFNxFZTgwXb_BfG4VPaS-uW_FcwI5pBABhvn9BXA"},
+      {title: "Project Name 14", service: "Sound Design", img: "https://i.picsum.photos/id/32/1200/800.jpg?hmac=id7PZm_G33RVlqYqlb9xbVdwaBsqZXY4MQPoUTvqSW0"},
+      {title: "Project Name 15", service: "Sound Design", img: "https://i.picsum.photos/id/354/1200/800.jpg?hmac=9R_ZKEDiZXHUoQoPNDP014mSxKduZ9u3s_q-ZqocWYg"}
+      ] 
+    %}
+    {% include 'components/catalog.html' %}
+  </section>
+{% endblock %}

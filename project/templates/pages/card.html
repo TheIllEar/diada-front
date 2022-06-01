@@ -1,0 +1,43 @@
+{% extends "index.html" %} 
+{% block content %}
+    <section class="container card-view" data-app-container>
+        <!-- @todo Выводить фото или видео/посмотреть как выводится видео -->
+        {% set item =  
+            {
+                title: "Project Name 10", 
+                service: "Sound Design", 
+                client: "OOO 'Something'", 
+                date: "22.22.22", 
+                description: "Full description text about the work", 
+                img: "https://dj.ru/images/news/99/1000499_f5TfPVUeXaAj024m6KR2Kb6WWeaa7YpH.jpg"
+            }       
+        %} 
+        <div class="main-title">
+            <h1>{{ item.title }}</h1>
+        </div>
+        <div class="card-view__wrapper wrapper">
+            <div class="wrapper-image">
+                {% include 'components/default_image.html' %}
+            </div>
+            <div class="wrapper-info">
+                <ul class="wrapper-info__list">
+                    <li class="wrapper-info__item">
+                        <div class="title">Service:</div>
+                        <div class="desc">{{ item.service }}</div>
+                    </li>
+                    <li class="wrapper-info__item">
+                        <div class="title">Client:</div>
+                        <div class="desc">{{ item.client }}</div>
+                    </li>
+                    <li class="wrapper-info__item">
+                        <div class="title">Date:</div>
+                        <div class="desc">{{ item.date }}</div>
+                    </li>
+                    <li class="wrapper-info__item">
+                        <div class="title">Description: <span class="desc">{{ item.description }}</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

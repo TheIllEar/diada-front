@@ -1,0 +1,15 @@
+.container-reviews {
+  .review {
+    
+  }
+  @include breakpoint($tablet) {
+    .review {
+      
+    }
+  }
+  @include breakpoint($desktop) {
+    .review {
+      
+    }
+  }
+}

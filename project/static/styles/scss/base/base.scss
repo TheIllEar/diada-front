@@ -1,0 +1,94 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+html {
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    height: 3px;
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: $color_accent;
+  }
+  scrollbar-width: thin;
+}
+body {
+  @include fs('content');
+  background: $color_main;
+  color: $color_accent;
+  font-family: 'Anonymous Pro', monospace;
+  /* Высота для мобилок */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  &.disabled-scroll {
+    overflow-y: hidden;
+  }
+  .container {
+    min-height: calc(100vh - 60px - 60px);
+    &.snap {
+      position: relative;
+      z-index: 1;
+      background-color: $color_main;
+      padding-bottom: 30px;
+      margin-bottom: 70px;
+      min-height: calc(100vh - 60px);
+      box-shadow: $shadow_default;
+    }
+  }
+}
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+a:focus,
+button:focus {
+  outline: inherit;
+}
+
+/* Убираем дефолтные стрелки input Chrome n FireFox */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  //проверить ''
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  //проверить ''
+  -moz-appearance: textfield;
+}
+
+// ::-webkit-scrollbar {
+//     height: 4px;
+//     width: 4px;
+// }
+// ::-webkit-scrollbar-thumb {
+//     border-radius: 4px;
+//     background: #29346e;
+// }
+// scrollbar-width: thin;
+
+@include breakpoint($tablet) {
+  body {
+    .container {
+      min-height: calc(100vh - 95px - 65px);
+      &.snap {
+        position: relative;
+        z-index: 1;
+        background-color: $color_main;
+        padding-bottom: 50px;
+        margin-bottom: 100px;
+        min-height: calc(100vh - 95px);
+      }
+    }
+  }
+}

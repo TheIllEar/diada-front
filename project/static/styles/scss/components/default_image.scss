@@ -1,0 +1,19 @@
+.default-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  &.loading {
+    @include loading();
+  }
+  &__inner {
+    @include bg();
+    @include padding-hack(65%);
+    position: relative;
+    z-index: 6;
+    opacity: 0;
+    &.loaded {
+      @include transition();
+      opacity: 1;
+    }
+  }
+}
