@@ -4,19 +4,20 @@
 
 import { Router } from 'express';
 import fetch from 'node-fetch';
+import chalk from 'chalk';
 const router = Router(),
   urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=img',
   urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=img';
 
 router.get('/', async function (req, res, next) {
   try {
-    const responsePajes = await fetch(urlPages),
+    const responsePages = await fetch(urlPages),
       responseProject = await fetch(urlProjects);
 
     let projects = [],
       _projects = await responseProject.json(),
       page = {},
-      _pages = await responsePajes.json();
+      _pages = await responsePages.json();
 
     _projects.data.forEach((_project, i) => {
       // Выводим первые 10 для главной
@@ -45,7 +46,7 @@ router.get('/', async function (req, res, next) {
       items: projects,
     });
   } catch (error) {
-    console.error('Ошибка на бэке', error);
+    console.error(chalk.red('Ошибка на бэке:'), error);
   }
 });
 

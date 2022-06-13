@@ -1,5 +1,6 @@
-<!-- @todo подставлять вместо card ЧПУ -->
-<a href="/works/card" class="card{% if loop.index0 == 0 %} card--first {% elseif loop.index0 == 1 %} card--second{% endif %} loading">
+<!-- @todo подставлять mobile img -->
+<!-- @todo переделать id на name(на английском, не ЧПУ)-->
+<a href="/works/{{item.id}}" class="card{% if loop.index0 == 0 %} card--first {% elseif loop.index0 == 1 %} card--second{% endif %} loading">
   <div class="card__inner" data-app-catalog-img="{{item.img}}">
     <div class="card-info">
       <div class="card-info__title">{{item.title}}</div>

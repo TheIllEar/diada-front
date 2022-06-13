@@ -2,24 +2,54 @@
  * Карточка
  */
 
-import { Router } from "express";
-const router = Router();
-const card = 'card'; // Подставлять ЧПУ
+import { Router } from 'express';
+import fetch from 'node-fetch';
+import chalk from 'chalk';
+const router = Router(),
+  urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=img',
+  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=img',
+  getCards = async () => {
+    try {
+      const responseProject = await fetch(urlProjects),
+        _projects = await responseProject.json();
+      _projects.data.forEach((_project) => {
+        const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=img`;
+        router.get(`/works/${_project.id}`, async function (req, res, next) {
+          try {
+            const responseCard = await fetch(_cardUrl),
+              _card = await responseCard.json();
+            let card = {
+              id: _card.data.id,
+              title: _card.data.attributes.title,
+              service: _card.data.attributes.service,
+              img: _card.data.attributes.img.data ? _card.data.attributes.img.data[0].attributes.formats.medium.url : '',
+              imgMobile: _card.data.attributes.img.data ? _card.data.attributes.img.data[0].attributes.formats.small.url : '',
+            };
 
-// В ссылки подставлять id или ЧПУ проекта, типо card/3 
-// Далее получить список всех проектов и перебрать через forEach, подставляя каждому в render путь со своим id/ЧПУ
-
-// https://diada-admin.herokuapp.com/api/projects?populate=img
-// response.data[0].attributes.img.data[0].attributes
-
-
-router.get(`/works/${card}`, function (req, res, next) {
-    res.render("pages/card", {
-        about: {
-            heading: "Catalog",
-            // img: "https://images.unsplash.com/photo-1545852528-fa22f7fcd63e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80",
-        },
-    });
-});
+            // _projects.data.forEach((_project, i) => {
+            // });
+            // _pages.data.forEach((_page, i) => {
+            //   if (_page.attributes.name === 'main') {
+            //     page = {
+            //       title: _page.attributes.title,
+            //       description: _page.attributes.description,
+            //       keywords: _page.attributes.keywords,
+            //       img: _page.attributes.img.data ? _page.attributes.img.data[0].attributes.formats.medium.url : '',
+            //     };
+            //   }
+            // });
+            res.render('pages/card', {
+              item: card,
+            });
+          } catch (error) {
+            console.error(chalk.red('Ошибка на бэке:'), error);
+          }
+        });
+      });
+    } catch (error) {
+      console.error(chalk.red('Ошибка на бэке (Получение проектов):'), error);
+    }
+  };
+getCards();
 
 export default router;
