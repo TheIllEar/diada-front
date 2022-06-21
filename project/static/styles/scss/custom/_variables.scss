@@ -9,6 +9,7 @@ $color_main: #f8f8f8;
 $color_accent: #dd194f;
 $color_white: #fff;
 $color_grey: #fafafa;
+$color_grey2: #e6e6e6;
 $color_orange_light: #fa700b;
 $color_orange_dark: #f83e11;
 $color_purple: #551a8b;
@@ -46,4 +47,6 @@ $default_shadow: 1px 0 15px 2px rgba(0, 0, 0, 0.4);
 
 //Other
 $max_container: 1200px;
-$shadow_default: 0 0 30px -10px #e6e6e6;
+// $shadow_default: 0 0 30px -10px $color_grey2;
+$shadow_default: 0 0 22px 2px $color_grey2;
+$shadow_default_bottom: 0 8px 12px -2px $color_grey2;

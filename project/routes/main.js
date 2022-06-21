@@ -37,6 +37,7 @@ router.get('/', async function (req, res, next) {
           title: _page.attributes.title,
           description: _page.attributes.description,
           keywords: _page.attributes.keywords,
+          caption: _page.attributes.caption,
           img: _page.attributes.img.data ? _page.attributes.img.data[0].attributes.formats.medium.url : '',
         };
       }
