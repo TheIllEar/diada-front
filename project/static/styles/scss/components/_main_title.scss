@@ -1,7 +1,7 @@
 .main {
   &-title {
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 0 20px;
     h1 {
       font-size: 20px;
       background: radial-gradient(circle farthest-corner at center, $color_orange_light, $color_accent 25%);
@@ -11,13 +11,13 @@
       color: transparent;
     }
     @include breakpoint($tablet) {
-      padding: 50px 0;
+      padding: 50px 0 25px;
       h1 {
         font-size: 27px;
       }
     }
     @include breakpoint($desktop) {
-      padding: 60px 0;
+      padding: 60px 0 30px;
       h1 {
         font-size: 33px;
       }

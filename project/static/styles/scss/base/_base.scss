@@ -21,6 +21,8 @@ body {
   background: $color_main;
   color: $color_accent;
   font-family: 'Anonymous Pro', monospace;
+  pointer-events: none;
+  opacity: 0.5;
   /* Высота для мобилок */
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -67,15 +69,10 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-// ::-webkit-scrollbar {
-//     height: 4px;
-//     width: 4px;
-// }
-// ::-webkit-scrollbar-thumb {
-//     border-radius: 4px;
-//     background: #29346e;
-// }
-// scrollbar-width: thin;
+.app-load {
+  pointer-events: auto;
+  opacity: 1;
+}
 
 @include breakpoint($tablet) {
   body {

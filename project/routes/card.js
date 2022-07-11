@@ -5,6 +5,8 @@
 import { Router } from 'express';
 import fetch from 'node-fetch';
 import chalk from 'chalk';
+import { _getImg } from '../custom/helper.js';
+
 const router = Router(),
   urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=img',
   urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=img',
@@ -18,6 +20,9 @@ const router = Router(),
           try {
             const responseCard = await fetch(_cardUrl),
               _card = await responseCard.json(),
+              _img = _card.data.attributes.img.data,
+              { _imgDefult } = _getImg(_img),
+              { _imgSmall } = _getImg(_img),
               card = {
                 id: _card.data.id,
                 title: _card.data.attributes.title,
@@ -25,13 +30,13 @@ const router = Router(),
                 client: _card.data.attributes.client,
                 description: _card.data.attributes.description,
                 date: _card.data.attributes.date,
-                img: _card.data.attributes.img.data ? _card.data.attributes.img.data[0].attributes.formats.medium.url : '',
-                imgMobile: _card.data.attributes.img.data ? _card.data.attributes.img.data[0].attributes.formats.small.url : '',
+                img: _imgDefult ? _imgDefult : '',
+                imgMobile: _imgSmall ? _imgSmall : '',
               },
               page = {
-                title: 'DIADA | '+_card.data.attributes.title,
+                title: 'DIADA | ' + _card.data.attributes.title,
                 description: _card.data.attributes.description,
-                img: _card.data.attributes.img.data ? _card.data.attributes.img.data[0].attributes.formats.medium.url : '',
+                img: _imgDefult ? _imgDefult : '',
               };
             res.render('pages/card', {
               item: card,
