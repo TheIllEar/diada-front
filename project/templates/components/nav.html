@@ -6,11 +6,18 @@
   </div>
   <div class="nav-bar__content">
     <ul class="nav-list">
-      <!-- @todo перебирать ссылки форычом/active -->
-      <li class="nav-list__item"><a href="/" class="nav-link active">Home</a></li>
-      <li class="nav-list__item"><a href="/works" class="nav-link">Works</a></li>
-      <li class="nav-list__item"><a href="/reviews" class="nav-link">Reviews</a></li>
-      <li class="nav-list__item"><a href="/about" class="nav-link">About</a></li>
+      {% set navItems = [
+        {title: 'Home', link: '/', active: 'main'},
+        {title: 'Works', link: '/works', active: 'works'},
+        {title: 'Reviews', link: '/reviews', active: 'reviews'},
+        {title: 'About', link: '/about', active: 'about'}
+        ] 
+      %}
+      {% for item in navItems %}
+        <li class="nav-list__item">
+          <a href="{{ item.link }}" class="nav-link{% if page.active == item.active %} active{% endif %}">{{ item.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
     <div class="nav-bar__footer">
       <div class="mail">

@@ -41,6 +41,7 @@ router.get('/works', async function (req, res, next) {
           keywords: _page.attributes.keywords,
           caption: _page.attributes.caption,
           img: _page.attributes.img.data ? _page.attributes.img.data.attributes.formats.medium.url : '',
+          active: 'works',
         };
       }
     });

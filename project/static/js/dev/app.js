@@ -20,8 +20,12 @@ let app = {
    * Обработка после загрузки страницы
    */
   contentLoaded() {
-    console.log(document.querySelector(this._selectors.body));
-    document.querySelector(this._selectors.body).classList.add(this._classes.load);
+    let body = document.querySelector(this._selectors.body);
+
+    body.classList.add(this._classes.load);
+    onbeforeunload = () => {
+      body.classList.remove(this._classes.load);
+    };
   },
 
   /**

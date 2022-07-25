@@ -18,6 +18,7 @@ html {
 }
 body {
   @include fs('content');
+  @include transition();
   background: $color_main;
   color: $color_accent;
   font-family: 'Anonymous Pro', monospace;

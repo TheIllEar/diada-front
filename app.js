@@ -13,7 +13,6 @@ const app = express(),
   __filename = fileURLToPath(import.meta.url),
   __dirname = dirname(__filename),
   PORT = process.env.PORT || 3000;
-  
 
 //Указываем для нунчак расширение файлов, которое будем использовать
 app.set('view engine', 'html');
@@ -36,5 +35,3 @@ app.use(reviewsRoute);
 app.listen(PORT, () => {
   console.log('Started on port:', PORT);
 });
-
-

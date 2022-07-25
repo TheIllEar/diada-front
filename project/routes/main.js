@@ -47,11 +47,12 @@ router.get('/', async function (req, res, next) {
           keywords: _page.attributes.keywords,
           caption: _page.attributes.caption,
           img: _imgDefult ? _imgDefult : '',
+          active: 'main',
         };
       }
     });
     res.render('pages/main', {
-      page: page,
+      page,
       items: projects,
     });
   } catch (error) {

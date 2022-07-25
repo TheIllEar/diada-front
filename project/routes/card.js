@@ -37,6 +37,7 @@ const router = Router(),
                 title: 'DIADA | ' + _card.data.attributes.title,
                 description: _card.data.attributes.description,
                 img: _imgDefult ? _imgDefult : '',
+                active: 'works',
               };
             res.render('pages/card', {
               item: card,
