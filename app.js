@@ -7,7 +7,6 @@ import mainRoute from './project/routes/main.js';
 import aboutRoute from './project/routes/about.js';
 import catalogRoute from './project/routes/works.js';
 import cardRoute from './project/routes/card.js';
-import reviewsRoute from './project/routes/reviews.js';
 
 const app = express(),
   __filename = fileURLToPath(import.meta.url),
@@ -29,7 +28,6 @@ app.use(mainRoute);
 app.use(aboutRoute);
 app.use(catalogRoute);
 app.use(cardRoute);
-app.use(reviewsRoute);
 
 //server
 app.listen(PORT, () => {

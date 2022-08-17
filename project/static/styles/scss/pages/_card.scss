@@ -1,11 +1,11 @@
 .card-view {
   .wrapper {
     &-info {
+      margin-top: 20px;
+      padding: 0 12px;
       &__list {
-        margin-top: 20px;
         display: flex;
         flex-direction: column;
-        padding: 0 12px;
       }
       &__item {
         margin-bottom: 8px;
@@ -23,20 +23,70 @@
         }
       }
     }
+    &-audio {
+      margin-top: 20px;
+      padding: 0 12px;
+    }
+  }
+  .card-slider,
+  .card-thumb {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    overflow: hidden;
+    &__slide {
+      min-height: 180px;
+      .wrapper-image {
+        width: 100%;
+        .default-image {
+          &__inner {
+            opacity: 1;
+          }
+        }
+      }
+      .wrapper-video {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .video {
+          width: 100%;
+          height: auto;
+          max-height: 100%;
+        }
+        iframe {
+          height: 100%;
+          max-height: 100%;
+        }
+      }
+      &_video {
+        display: flex;
+        align-items: center;
+        background-color: $color_accent;
+      }
+    }
+  }
+  .card-thumb {
+    &__slide {
+      @include transition();
+      min-height: 75px;
+      opacity: 0.4;
+      cursor: pointer;
+    }
+    .swiper-slide-thumb-active {
+      opacity: 1;
+    }
   }
   @include breakpoint($tablet) {
     .wrapper {
       padding: 0 10px;
       &-image {
-        width: 50%;
+        width: 70%;
         margin: 0 auto;
       }
       &-info {
-        width: 50%;
-        margin: 0 auto;
-        &__list {
-          padding: 0;
-        }
+        width: 70%;
+        margin: 20px auto 0;
+        padding: 0;
         &__item {
           .title {
             font-size: $font_size_title_tablet;
@@ -46,12 +96,30 @@
           }
         }
       }
+      &-audio {
+        margin: 20px auto 0;
+        width: 70%;
+        padding: 0;
+      }
+    }
+    .card-slider,
+    .card-thumb {
+      width: 70%;
     }
   }
   @include breakpoint($desktop) {
     margin-bottom: 100px;
     .wrapper {
       padding: 0 24px;
+      &-image,
+      &-info,
+      &-audio {
+        width: 50%;
+      }
+    }
+    .card-slider,
+    .card-thumb {
+      width: 50%;
     }
   }
 }

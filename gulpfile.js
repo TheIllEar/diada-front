@@ -21,7 +21,7 @@ gulp.task('nodemon', (cb) => {
   return nodemon({
     script: 'app.js',
     ext: 'js html',
-    watch: ['app.js', 'project/templates/**/*.html', 'project/routes/**/*.js', 'project/static/**/*.js'],
+    watch: ['app.js', 'project/templates/**/*.html', 'project/routes/**/*.js', 'project/custom/**/*.js', 'project/static/**/*.js'],
   }).on('start', () => {
     if (!started) {
       cb();

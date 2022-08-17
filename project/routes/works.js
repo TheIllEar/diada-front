@@ -5,11 +5,11 @@
 import { Router } from 'express';
 import fetch from 'node-fetch';
 import chalk from 'chalk';
-import { _getImg } from '../custom/helper.js';
+import { _getImg, _getProjects } from '../custom/helper.js';
 
 const router = Router(),
-  urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=img',
-  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=img';
+  urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=Img',
+  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img';
 
 router.get('/works', async function (req, res, next) {
   try {
@@ -21,28 +21,28 @@ router.get('/works', async function (req, res, next) {
       _pages = await responsePages.json(),
       page = {};
 
-    _projects.data.forEach((_project) => {
-      let _img = _project.attributes.img.data,
-        { _imgDefult } = _getImg(_img),
-        { _imgSmall } = _getImg(_img);
-      projects.push({
-        id: _project.id,
-        title: _project.attributes.title,
-        service: _project.attributes.service,
-        img: _imgDefult ? _imgDefult : '',
-        imgMobile: _imgSmall ? _imgSmall : '',
-      });
+    _getProjects(_projects).forEach((_project) => {
+      if (_project.img) {
+        projects.push(_project);
+      }
     });
     _pages.data.forEach((_page, i) => {
-      if (_page.attributes.name === 'works') {
+      if (_page.attributes.Name === 'works') {
         page = {
-          title: _page.attributes.title,
-          description: _page.attributes.description,
-          keywords: _page.attributes.keywords,
-          caption: _page.attributes.caption,
-          img: _page.attributes.img.data ? _page.attributes.img.data.attributes.formats.medium.url : '',
+          title: _page.attributes.Title,
+          description: _page.attributes.Description,
+          keywords: _page.attributes.Keywords,
+          caption: _page.attributes.Caption,
+          img: '',
           active: 'works',
         };
+        if (_page.attributes.Img && _page.attributes.Img.data) {
+          let _img = _page.attributes.Img.data,
+            { _imgDefult } = _getImg(_img);
+          if (_imgDefult) {
+            page.img = _imgDefult;
+          }
+        }
       }
     });
     res.render('pages/works', {

@@ -21,10 +21,12 @@ let app = {
    */
   contentLoaded() {
     let body = document.querySelector(this._selectors.body);
-
     body.classList.add(this._classes.load);
     onbeforeunload = () => {
       body.classList.remove(this._classes.load);
+    };
+    onunload = () => {
+      body.classList.add(this._classes.load);
     };
   },
 

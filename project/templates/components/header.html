@@ -5,7 +5,7 @@
         {% set navItems = [
           {title: 'Home', link: '/', active: 'main'},
           {title: 'Works', link: '/works', active: 'works'},
-          {title: 'Reviews', link: '/reviews', active: 'reviews'}
+          {title: 'About', link: '/about', active: 'about'}
           ] 
         %}
         {% for item in navItems %}
@@ -20,8 +20,7 @@
         </a>
       </div>
       <ul class="header-list header-list--right">
-        <li class="header-list__item"><a href="/about" class="header-list__link{% if page.active == 'about' %} active{% endif %}">About</a></li>
-        <li class="header-list__item"><a href="mailto:diada@gmail.com" class="header-list__link">diada@gmail.com</a></li>
+        <li class="header-list__item"><a href="mailto:diada.prod@gmail.com" class="header-list__link">diada.prod@gmail.com</a></li>
       </ul>
     </div>
   </div>

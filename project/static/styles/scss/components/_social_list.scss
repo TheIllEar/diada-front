@@ -40,6 +40,12 @@
     &--vk {
       background-image: url(../../img/vk_r.svg);
     }
+    &--telegram {
+      background-image: url(../../img/telegram_r.svg);
+    }
+    &--soundcloud {
+      background-image: url(../../img/soundcloud_r.svg);
+    }
   }
   @include breakpoint($tablet) {
     &__item {

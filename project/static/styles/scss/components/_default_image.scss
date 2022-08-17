@@ -16,4 +16,23 @@
       opacity: 1;
     }
   }
+  &--empty {
+    @include bg(60%, 50% 50%);
+    position: relative;
+    background-image: url(../../img/logo_empty.png);
+    background-color: $color_grey3;
+    &::before {
+      @include bg();
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 55px;
+      height: 57px;
+      background-image: url(../../img/play.svg);
+    }
+  }
 }
