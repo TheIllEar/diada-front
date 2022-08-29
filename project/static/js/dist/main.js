@@ -438,7 +438,6 @@ window.ready(() => {
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Swiper = factory());
 }(this, (function () { 'use strict';
-
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -448,7 +447,6 @@ window.ready(() => {
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
-
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
@@ -472,7 +470,6 @@ window.ready(() => {
 
     return _extends.apply(this, arguments);
   }
-
   /**
    * SSR Window 3.0.0-alpha.4
    * Better handling for window object in SSR environment
@@ -484,7 +481,6 @@ window.ready(() => {
    *
    * Released on: May 20, 2020
    */
-
   /* eslint-disable no-param-reassign */
   function isObject(obj) {
     return obj !== null && typeof obj === 'object' && 'constructor' in obj && obj.constructor === Object;
