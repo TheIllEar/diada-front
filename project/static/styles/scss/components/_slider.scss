@@ -29,6 +29,7 @@
       border-radius: 50%;
       opacity: 0.6;
       cursor: pointer;
+      z-index: 40;
       &-prev {
         @include bg(20px, 22px 50%);
         background-image: url(../../img/arrow_prev.svg);

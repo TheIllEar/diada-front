@@ -75,6 +75,10 @@ input[type='number'] {
   opacity: 1;
 }
 
+.only-tablet {
+  display: none;
+}
+
 @include breakpoint($tablet) {
   body {
     .container {
@@ -88,5 +92,12 @@ input[type='number'] {
         min-height: calc(100vh - 95px);
       }
     }
+  }
+  .only-mobile {
+    display: none;
+  }
+
+  .only-tablet {
+    display: block;
   }
 }

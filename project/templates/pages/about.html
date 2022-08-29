@@ -1,9 +1,32 @@
 {% extends "index.html" %} 
 {% block content %}
 <section class="container container-about" data-app-container>
-    <h1>{{about.heading}}</h1>
-    <br>
-    <img src="{{about.img}}" style="width: 800px;" height="400px;" />
+    <div class="main-title">
+        <h1>{{page.caption}}</h1>
+    </div>
+    <div class="about__wrapper wrapper">
+        {% if page.img %}
+            {% set item = {img: page.img} %}
+            <div class="wrapper-image">
+                {% include 'components/default_image.html'%}
+            </div>
+        {% endif %}
+        <div class="wrapper-info">
+            <ul class="wrapper-info__list">
+                <li class="wrapper-info__item">
+                    <div class="title">About<span class="desc">{{page.description}}</span></div>
+                </li>
+                <li class="wrapper-info__item">
+                    <div class="title">Contacts<a class="desc contact-link" href="mailto:diada.prod@gmail.com" class="header-list__link">diada.prod@gmail.com</a></div>
+                </li>
+            </ul>
+        </div>
+        <div class="only-mobile">
+            {% include "components/social_list.html" %}
+        </div>
+        <div class="only-tablet arrow-down" data-app-arrow-down>
+            Other links
+        </div>
+    </div>
 </section>
-<br>
-{% endblock %}
+{% endblock %} 

@@ -22,7 +22,7 @@
       has_thumbs: 'has-thumbs',
     },
     _data: {
-      sliderName: 'appSlider',
+      slider_name: 'appSlider',
     },
 
     _vars: {
@@ -37,7 +37,7 @@
     },
 
     /**
-     * инициализация слайдеров в карточке
+     * инициализация слайдеров
      */
     initSliders() {
       const body = document.querySelector(this._selectors.body),
@@ -45,7 +45,7 @@
 
       if (containers.length) {
         containers.forEach((productContainer) => {
-          const sliderName = productContainer.dataset[this._data.sliderName],
+          const sliderName = productContainer.dataset[this._data.slider_name],
             navigationLeft = productContainer.querySelector(this._selectors.navigation_left),
             navigationRight = productContainer.querySelector(this._selectors.navigation_right),
             _setting = {
