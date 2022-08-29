@@ -28,7 +28,7 @@
       background-color: $color_white;
       border-radius: 50%;
       opacity: 0.6;
-      cursor: pointer;
+      cursor: pointer; 
       z-index: 40;
       &-prev {
         @include bg(20px, 22px 50%);
