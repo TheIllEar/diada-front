@@ -46,8 +46,11 @@ const router = Router(),
                 title: 'DIADA | ' + _card.data.attributes.Title,
                 description: _card.data.attributes.Description,
                 img: _imgDefult ? _imgDefult : '',
+                videos: _videos,
                 active: 'works',
+                canonical: `diada.studio/works/${_card.data.id}`
               };
+             
             res.render('pages/card', {
               item: card,
               page: page,

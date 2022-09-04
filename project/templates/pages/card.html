@@ -4,6 +4,13 @@
         <div class="main-title">
             <h1>{{ item.title }}</h1>
         </div>
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="{{ item.title }}">
+        <meta property="og:url" content="https://{{page.canonical}}">
+        {% if item.description %}
+            <meta property="og:description" name="description" content="{{ item.description }}">
+        {% endif %}
+        <meta property="og:image" content="{{page.img}}">
         <div class="card-view__wrapper wrapper">
             {% if item.images|length > 1 or item.images|length === 1 and (item.videos|length or item.embedVideo|length) %}
                 <div class="slider card-slider">

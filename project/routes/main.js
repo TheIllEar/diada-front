@@ -35,6 +35,7 @@ router.get('/', async function (req, res, next) {
           caption: _page.attributes.Caption,
           img: '',
           active: 'main',
+          canonical: 'diada.studio'
         };
         if (_page.attributes.Img && _page.attributes.Img.data) {
           let _img = _page.attributes.Img.data,
