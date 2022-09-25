@@ -3,6 +3,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import nunjucks from 'nunjucks';
+import nocache from 'nocache';
 import mainRoute from './project/routes/main.js';
 import aboutRoute from './project/routes/about.js';
 import catalogRoute from './project/routes/works.js';
@@ -21,6 +22,10 @@ nunjucks.configure(['project/templates'], {
   autoescape: false,
   express: app,
 });
+
+// Отключаем кэширование
+app.use(nocache());
+app.set('etag', false);
 
 //static and routes
 app.use(express.static(path.join(__dirname, 'project/static')));
