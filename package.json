@@ -28,6 +28,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "nocache": "^3.0.4",
+    "node-cron": "^3.0.2",
     "node-fetch": "^3.2.6",
     "nunjucks": "^3.2.3"
   }

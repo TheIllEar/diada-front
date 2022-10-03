@@ -9,7 +9,7 @@ import { _getImg, _getProjects } from '../custom/helper.js';
 
 const router = Router(),
   urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=Img',
-  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img';
+  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&sort=Sort';
 
 router.get('/', async function (req, res, next) {
   try {
@@ -35,7 +35,7 @@ router.get('/', async function (req, res, next) {
           caption: _page.attributes.Caption,
           img: '',
           active: 'main',
-          canonical: 'diada.studio'
+          canonical: 'diada.studio',
         };
         if (_page.attributes.Img && _page.attributes.Img.data) {
           let _img = _page.attributes.Img.data,
