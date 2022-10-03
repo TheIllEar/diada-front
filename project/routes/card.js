@@ -33,8 +33,8 @@ const router = Router(),
   },
   projectsHandler = (_projects) => {
     _projects.data.forEach((_project) => {
-      // const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=Video`;
-      const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=Video`;
+      const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=Video`;
+      // const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=Video`;
       router.get(`/works/${_project.id}`, async function (req, res, next) {
         try {
           const responseCard = await fetch(_cardUrl),
