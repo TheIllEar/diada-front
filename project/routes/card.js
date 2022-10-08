@@ -9,7 +9,7 @@ import cron from 'node-cron';
 import { _getImg, _getImages, _getVideos } from '../custom/helper.js';
 
 const router = Router(),
-  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&populate=Video',
+  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&populate=Video&sort=Sort',
   // urlProjects = 'http://localhost:1337/api/projects?populate=Img&populate=Video&sort=Sort',
   getCards = async () => {
     try {
@@ -35,7 +35,7 @@ const router = Router(),
     _projects.data.forEach((_project) => {
       const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=Video`;
       // const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=Video`;
-      router.get(`/works/${_project.id}`, async function (req, res, next) {
+      router.get(`/works/${_project.attributes.Slug}`, async function (req, res, next) {
         try {
           const responseCard = await fetch(_cardUrl),
             _card = await responseCard.json(),

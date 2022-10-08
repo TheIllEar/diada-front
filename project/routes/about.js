@@ -22,6 +22,7 @@ router.get("/about", async function (req, res, next) {
             page = {
               title: _page.attributes.Title,
               description: _page.attributes.Description,
+              PageDescription: _page.attributes.PageDescription,
               keywords: _page.attributes.Keywords,
               caption: _page.attributes.Caption,
               img: '',

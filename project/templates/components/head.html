@@ -5,6 +5,7 @@
   <title>{{page.title}}</title>
   <meta name="description" content="{{page.description}}" />
   <meta name="keywords" content="{{page.keywords}}" />
+  
     <!-- Open Graph-->
     <meta property="og:site_name" content="diada.studio" />
     <link rel="canonical" href="https://{{page.canonical}}" />
@@ -20,16 +21,21 @@
       <meta property="og:video:type" content="video/mp4" />
     {% endif %}
   {% include 'components/favicons.html' %}
+
   <!-- Контролирует поведение поисковых систем при индексации страницы -->
-  <!-- <meta name="robots" content="index,follow,noodp" /> -->
-  <meta name="robots" content="none" />
+  <meta name="robots" content="index,follow,noodp" />
+  <!-- <meta name="robots" content="none" /> -->
+
   <!-- Все поисковые системы -->
-  <!-- <meta name="googlebot" content="index,follow" /> -->
-  <meta name="googlebot" content="none" />
+  <meta name="googlebot" content="index,follow" />
+  <!-- <meta name="googlebot" content="none" /> -->
+
   <!-- Указание отдельно для Google -->
-  <!-- <meta name="google" content="nositelinkssearchbox" /> -->
+  <meta name="google" content="nositelinkssearchbox" />
+
   <!-- Позволяет указать Google не предлагать перевести эту страницу -->
   <meta name="generator" content="program" />
+
   <!-- Короткое описание тематики вашего сайта -->
   <meta name="subject" content="Sound design" />
 

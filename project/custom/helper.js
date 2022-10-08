@@ -67,6 +67,7 @@ const /**
     _projects.data.forEach((_project, i) => {
       const project = {
         id: _project.id,
+        slug: _project.attributes.Slug,
         title: _project.attributes.Title,
         service: _project.attributes.Service,
       };
