@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.diada.studio$ [NC]
+RewriteRule ^(.*)$ http://diada.studio/$1 [R=301,L]

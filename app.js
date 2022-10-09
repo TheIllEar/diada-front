@@ -8,11 +8,17 @@ import mainRoute from './project/routes/main.js';
 import aboutRoute from './project/routes/about.js';
 import catalogRoute from './project/routes/works.js';
 import cardRoute from './project/routes/card.js';
+import RewriteMiddleware from 'express-htaccess-middleware';
 
 const app = express(),
   __filename = fileURLToPath(import.meta.url),
   __dirname = dirname(__filename),
-  PORT = process.env.PORT || 3000;
+  PORT = process.env.PORT || 3000,
+  RewriteOptions = {
+    file: path.resolve(__dirname, '.htaccess'),
+    verbose: (process.env.ENV_NODE == 'development'),
+    watch: (process.env.ENV_NODE == 'development'),
+  };
 
 //Указываем для нунчак расширение файлов, которое будем использовать
 app.set('view engine', 'html');
@@ -26,6 +32,9 @@ nunjucks.configure(['project/templates'], {
 // Отключаем кэширование
 app.use(nocache());
 app.set('etag', false);
+
+// .htaccess
+app.use(RewriteMiddleware(RewriteOptions));
 
 //static and routes
 app.use(express.static(path.join(__dirname, 'project/static')));
