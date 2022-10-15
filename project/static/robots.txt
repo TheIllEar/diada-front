@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://diada.studio/sitemap.xml
+Host: diada.studio

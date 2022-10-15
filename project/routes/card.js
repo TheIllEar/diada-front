@@ -67,7 +67,7 @@ const router = Router(),
               img: _imgDefult ? _imgDefult : '',
               videos: _videos,
               active: 'works',
-              canonical: `diada.studio/works/${_card.data.id}`,
+              canonical: `diada.studio/works/${_project.attributes.Slug}`,
             };
 
           res.render('pages/card', {

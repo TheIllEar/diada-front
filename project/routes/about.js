@@ -27,6 +27,7 @@ router.get("/about", async function (req, res, next) {
               caption: _page.attributes.Caption,
               img: '',
               active: 'about',
+              canonical: `diada.studio/about`,
             };
             if (_page.attributes.Img && _page.attributes.Img.data) {
               let _img = _page.attributes.Img.data,
