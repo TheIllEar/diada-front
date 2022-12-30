@@ -2,10 +2,11 @@
   <div class="header__container">
     <div class="header__inner">
       <ul class="header-list header-list--left">
+        <!-- {title: 'Works', link: '/works', active: 'works'}, -->
+        <!-- {title: 'About', link: '/about', active: 'about'} -->
         {% set navItems = [
-          {title: 'Home', link: '/', active: 'main'},
-          {title: 'Works', link: '/works', active: 'works'},
-          {title: 'About', link: '/about', active: 'about'}
+          {title: 'Work', link: '/', active: 'main'},
+          {title: 'Services', link: '/services', active: 'services'}
           ] 
         %}
         {% for item in navItems %}
@@ -15,7 +16,8 @@
         {% endfor %}
       </ul>
       <div class="logo">
-        <a {% if page.active != 'main' %}href="/"{% endif %} class="logo__link">
+        <!-- <a {% if page.active != 'main' %}href="/"{% endif %} class="logo__link"> -->
+        <a href="/" class="logo__link">
           <div class="logo__img"></div>
         </a>
       </div>

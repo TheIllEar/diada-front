@@ -2,7 +2,9 @@
 {% block content %}
 <section class="container container-works" data-app-container>
     <div class="main-title">
-      <h1>{{page.caption}}</h1>
+      {% if page.caption %}
+        <h1>{{page.caption}}</h1>
+      {% endif %}
     </div>
     {% include 'components/catalog.html' %}
   </section>

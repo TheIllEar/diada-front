@@ -22,9 +22,9 @@ router.get('/', async function (req, res, next) {
       _pages = await responsePages.json();
     _getProjects(_projects).forEach((_project, i) => {
       // Выводим первые 10 для главной
-      if (projects.length < 10 && _project.img) {
+    //   if (projects.length < 10 && _project.img) {
         projects.push(_project);
-      }
+    //   }
     });
     _pages.data.forEach((_page, i) => {
       if (_page.attributes.Name === 'main') {

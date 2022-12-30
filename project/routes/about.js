@@ -10,7 +10,7 @@ import { _getImg, _getProjects } from '../custom/helper.js';
 const router = Router(),
   urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=Img';
 
-router.get("/about", async function (req, res, next) {
+router.get("/services", async function (req, res, next) {
     try {
         const responsePages = await fetch(urlPages);
         let 
@@ -26,8 +26,8 @@ router.get("/about", async function (req, res, next) {
               keywords: _page.attributes.Keywords,
               caption: _page.attributes.Caption,
               img: '',
-              active: 'about',
-              canonical: `diada.studio/about`,
+              active: 'services',
+              canonical: `diada.studio/services`,
             };
             if (_page.attributes.Img && _page.attributes.Img.data) {
               let _img = _page.attributes.Img.data,

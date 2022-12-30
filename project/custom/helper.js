@@ -21,10 +21,10 @@ const /**
     if (_images) {
       let _defultImages = [],
         _smallImages = [];
-
-      _images.forEach((_img) => {
+        _images.forEach((_img) => {
         let _imgDefult = _img.attributes.formats.hasOwnProperty('medium') ? _img.attributes.formats.medium.url : _img.attributes.formats.thumbnail.url,
           _imgSmall = _img.attributes.formats.hasOwnProperty('small') ? _img.attributes.formats.small.url : _imgDefult;
+          
         if (_imgDefult && _imgSmall) {
           _defultImages.push(_imgDefult);
           _smallImages.push(_imgSmall);

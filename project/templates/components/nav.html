@@ -6,10 +6,11 @@
   </div>
   <div class="nav-bar__content">
     <ul class="nav-list">
+      <!-- {title: 'Works', link: '/works', active: 'works'}, -->
+      <!-- {title: 'About', link: '/about', active: 'about'} -->
       {% set navItems = [
-        {title: 'Home', link: '/', active: 'main'},
-        {title: 'Works', link: '/works', active: 'works'},
-        {title: 'About', link: '/about', active: 'about'}
+        {title: 'Work', link: '/', active: 'main'},
+        {title: 'Services', link: '/services', active: 'services'}
         ] 
       %}
       {% for item in navItems %}
@@ -20,7 +21,7 @@
     </ul>
     <div class="nav-bar__footer">
       <div class="mail">
-        <a href="mailto:diada@gmail.com" class="mail__link">diada@gmail.com</a>
+        <a href="mailto:diada.prod@gmail.com" class="mail__link">diada.prod@gmail.com</a>
       </div>
       {% include "components/social_list.html" %}
     </div>

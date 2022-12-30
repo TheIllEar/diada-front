@@ -2,7 +2,9 @@
 {% block content %}
     <section class="container card-view" data-app-container>
         <div class="main-title">
-            <h1>{{ item.title }}</h1>
+            {% if item.title %}
+                <h1>{{ item.title }}</h1>
+            {% endif %}
         </div>
         <meta property="og:type" content="article">
         <meta property="og:title" content="{{ item.title }}">
@@ -13,9 +15,9 @@
         <meta property="og:image" content="{{page.img}}">
         <div class="card-view__wrapper wrapper">
             {% if item.images|length > 1 or item.images|length === 1 and (item.videos|length or item.embedVideo|length) %}
-                <div class="slider card-slider">
+                <div class="slider card-slider" data-app-slider-container>
                     <div class="swiper-container has-thumbs" data-app-slider="projects" data-app-swiper-container>
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper" data-app-photoswipe-container>
                             <!-- Video -->
                             {% for _video in item.videos %}
                                 <div class="swiper-slide card-slider__slide card-slider__slide_video">
@@ -27,7 +29,9 @@
                             {% for _video in item.embedVideo %}
                                 <div class="swiper-slide card-slider__slide card-slider__slide_video">
                                     <div class="wrapper-video">
-                                        {{ _video }}
+                                        <div class="wrapper-video__inner" data-app-video-wrapper>
+                                            {{ _video }}
+                                        </div>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -36,20 +40,20 @@
                                 <div class="swiper-slide card-slider__slide">
                                     <div class="wrapper-image">
                                         <div class="default-image">
-                                            <div class="default-image__inner" style="background-image: url({{_img}});"></div>
+                                            <div class="default-image__inner" data-app-photoswipe-photo="{{_img}}" style="background-image: url({{_img}});"></div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
-                        {% include 'components/pagination.html' %}
                     </div>
                 </div>
-                <div class="slider card-thumb">
+                {% include 'components/pagination.html' %}
+                <div class="slider card-thumb" data-app-thumbs-container>
                     <div class="swiper-container thumbs-slider" data-app-slider-thumbs="projects">
                         <div class="swiper-wrapper">
                             <!-- Video -->
-                            {% for _video in item.videos %}
+                            <!-- {% for _video in item.videos %}
                                 <div class="swiper-slide card-thumb__slide">
                                     <div class="wrapper-image">
                                         <div class="default-image">
@@ -66,6 +70,16 @@
                                         </div>
                                     </div>
                                 </div>
+                            {% endfor %} -->
+                            <!-- Thumbs -->
+                            {% for _thumb in item.thumbs %}
+                                <div class="swiper-slide card-thumb__slide">
+                                    <div class="wrapper-image">
+                                        <div class="default-image">
+                                            <div class="default-image__inner" style="background-image: url({{_thumb}});"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
                             <!-- Img -->
                             {% for _img in item.images %}
@@ -78,6 +92,7 @@
                                 </div>
                             {% endfor %}
                         </div>
+                        <div class="swiper-scrollbar"></div>
                     </div>
                 </div>
             {% else %} 
@@ -119,4 +134,5 @@
             </div>
         </div>
     </section>
+    {% include 'components/photoswipe.html' %}
 {% endblock %}

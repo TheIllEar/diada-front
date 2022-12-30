@@ -6,7 +6,7 @@ import nunjucks from 'nunjucks';
 import nocache from 'nocache';
 import mainRoute from './project/routes/main.js';
 import aboutRoute from './project/routes/about.js';
-import catalogRoute from './project/routes/works.js';
+// import catalogRoute from './project/routes/works.js';
 import cardRoute from './project/routes/card.js';
 import RewriteMiddleware from 'express-htaccess-middleware';
 
@@ -40,7 +40,7 @@ app.use(RewriteMiddleware(RewriteOptions));
 app.use(express.static(path.join(__dirname, 'project/static')));
 app.use(mainRoute);
 app.use(aboutRoute);
-app.use(catalogRoute);
+// app.use(catalogRoute);
 app.use(cardRoute);
 
 //server
