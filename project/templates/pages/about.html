@@ -1,6 +1,6 @@
 {% extends "index.html" %} {% block content %}
 <section class="container container-about" data-app-container>
-  <div class="main-title">
+  <div class="main-title{% if page.caption == '' %} no-caption{% endif %}">
     {% if page.caption %}
       <h1>{{page.caption}}</h1>
     {% endif %}
@@ -16,7 +16,7 @@
           <div class="title">
             SOUND
             <div class="desc">
-              post production [sound design & music] for <br />
+              <div class="desc__title">post production [sound design & music] for:</div>
               commercials<br />
               short films<br />
               animation and motion graphics<br />

@@ -83,545 +83,6 @@ window.ready(() => {
   app.init();
 });
 
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                        Cookies
-   *
-   *  ############################################################
-   */
-  app.modules.cookies = {
-    _selectors: {
-      body: 'body',
-      container: '[data-app-cookies]',
-      close: '[data-app-cookies-close]',
-    },
-    _class: {
-      active: 'active',
-    },
-
-    init() {
-      this._modalCookiesHandler();
-    },
-
-    /**
-     * Обработка бодалки куки
-     */
-    _modalCookiesHandler() {
-      if (!localStorage.hideCookies) {
-        let body = document.querySelector(this._selectors.body),
-          container = body.querySelector(this._selectors.container);
-
-        if (container) {
-          let closeBtn = container.querySelector(this._selectors.close);
-          setTimeout(() => {
-            container.classList.add(this._class.active);
-          }, 1600);
-          closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this._hideModalCookies(container);
-          });
-        }
-      }
-    },
-
-    /**
-     * Скрываем окно
-     * @param {Element} container
-     */
-    _hideModalCookies(container) {
-      container.classList.remove(this._class.active);
-      localStorage.hideCookies = true;
-    },
-  };
-})();
-
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                        Fixed Footer
-   *
-   *  ############################################################
-   */
-  app.modules.footerFix = {
-    _selectors: {
-      body: 'body',
-      header: '[data-app-header]',
-      container: '[data-app-container]',
-      footer: '[data-app-footer]',
-    },
-    _classes: {
-      snap: 'snap',
-    },
-    init() {
-      this._fixFooterHandler();
-    },
-    _fixFooterHandler() {
-      let body = document.querySelector(this._selectors.body),
-        header = body.querySelector(this._selectors.header),
-        container = body.querySelector(this._selectors.container),
-        footer = body.querySelector(this._selectors.footer);
-
-      if (header && container && footer) {
-        let windowHeight = innerHeight,
-          headerHeight = header.clientHeight,
-          containerHeight = container.clientHeight + parseInt(getComputedStyle(container).marginBottom),
-          footerHeight = footer.clientHeight,
-          totalHeight = headerHeight + containerHeight + footerHeight;
-
-        if (totalHeight > windowHeight) {
-          container.classList.add(this._classes.snap);
-          footer.classList.add(this._classes.snap);
-        }
-      }
-    },
-  };
-})();
-
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                        Lazy load
-   *
-   *  ############################################################
-   */
-  app.modules.lazyLoad = {
-    _selectors: {
-      body: 'body',
-      img: '[data-app-catalog-img]',
-    },
-    _classes: {
-      loaded: 'loaded',
-      loading: 'loading',
-    },
-    init() {
-      this._lazyLoadHandler();
-    },
-    _lazyLoadHandler() {
-      let body = document.querySelector(this._selectors.body),
-        images = body.querySelectorAll(this._selectors.img),
-        options = {
-          root: null,
-          marginRoot: '0px',
-          treshold: 0.05,
-        },
-        observer = new IntersectionObserver((_images) => {
-          _images.forEach((e) => {
-            let _img = e.target,
-              imgUrl = _img.dataset.appCatalogImg;
-
-            if (e.isIntersecting) {
-              _img.style.backgroundImage = `url(${imgUrl})`;
-              let fakeImg = new Image();
-
-              fakeImg.addEventListener('load', (e) => {
-                _img.classList.add(this._classes.loaded);
-                setTimeout(() => {
-                  _img.parentElement.classList.remove(this._classes.loading);
-                }, 500);
-              });
-              fakeImg.src = imgUrl;
-            }
-          });
-        }, options);
-
-      images.forEach((img) => {
-        observer.observe(img);
-      });
-    },
-  };
-})();
-
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                       SideMobileMenu
-   *
-   *  ############################################################
-   */
-  app.modules.sideMobileMenu = {
-    _selectors: {
-      body: 'body',
-      nav_container: '[data-app-nav-container]',
-      nav_btn: '[data-app-nav-btn]',
-      shape: '[data-app-shape]',
-    },
-    _classes: {
-      disable: 'disabled-scroll',
-      toggle: 'toggle',
-    },
-    init() {
-      this._listeners();
-      this._mobileMenuHandler();
-    },
-
-    _listeners() {
-      if (window.innerWidth < 720) {
-        document.querySelector(this._selectors.nav_container).addEventListener('touchstart', this._handleTouch, false);
-        document.querySelector(this._selectors.nav_container).addEventListener('touchmove', this._handleTouch, false);
-        document.querySelector(this._selectors.nav_container).addEventListener('touchend', this._handleTouchEnd, false);
-      }
-    },
-
-    _handleTouch(e) {
-      let x = e.changedTouches[0].clientX,
-        total = this.clientWidth,
-        position = x - total;
-      if (position < 0) this.style.left = x - total + 'px';
-      else if (position >= 0) this.style.left = 0 + 'px';
-    },
-
-    _handleTouchEnd(e) {
-      let navBtn = e.currentTarget.querySelector('[data-app-nav-btn]'),
-        x = e.changedTouches[0].clientX,
-        total = this.clientWidth,
-        position = x - total;
-
-      this.style.left = '';
-      if (position <= -total * 0.5) {
-        navBtn.click();
-      }
-    },
-
-    _mobileMenuHandler() {
-      const body = document.querySelector(this._selectors.body),
-        shape = body.querySelector(this._selectors.shape),
-        navContainer = body.querySelector(this._selectors.nav_container),
-        navBtn = body.querySelector(this._selectors.nav_btn);
-
-      if (navContainer && navBtn) {
-        navBtn.addEventListener('click', () => {
-          navContainer.classList.toggle(this._classes.toggle);
-          body.classList.toggle(this._classes.disable);
-        });
-        body.addEventListener('click', (e) => {
-          if (e.target === shape) {
-            navContainer.classList.remove(this._classes.toggle);
-            body.classList.remove(this._classes.disable);
-          }
-        });
-      }
-    },
-  };
-})();
-
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                        Scroll Down
-   *
-   *  ############################################################
-   */
-  app.modules.scroll_down = {
-    _selectors: {
-      body: 'body',
-      btn: '[data-app-arrow-down]',
-    },
-
-    init() {
-      this._btnClickInint();
-    },
-
-    /**
-     * Инициализация обработчика
-     */
-    _btnClickInint() {
-      let btn = document.querySelector(this._selectors.btn);
-      if (btn) {
-        btn.addEventListener('click', this._btnClickHandler);
-      }
-    },
-
-    /**
-     * Обработка клика
-     * @param {Event} e
-     */
-    _btnClickHandler(e) {
-      let body = document.querySelector('body'),
-        bodyHeight = body.clientHeight;
-
-      scrollTo(0, bodyHeight);
-    },
-  };
-})();
-
-(function () {
-  'use strict';
-  /**
-   *  ############################################################
-   *
-   *                       Модуль слайдеров
-   *
-   *  ############################################################
-   */
-
-  // data-app-slider="name" - на контейнер над слайдером
-  // data-app-slider-thumbs="name" - на контейнер превьюх
-
-  app.modules.slider = {
-    _selectors: {
-      body: 'body',
-      sliders: '[data-app-slider]',
-      slider_container: '[data-app-slider-container]',
-      thumbs_container: '[data-app-thumbs-container]',
-      video_wrapper: '[data-app-video-wrapper]',
-      video_wrapper_inner: '.wrapper-video__inner',
-      navigation: '[data-app-arrows-container]',
-      navigation_left: '[data-app-arrow-prev]',
-      navigation_right: '[data-app-arrow-next]',
-      photoSwipe: {
-        container: '[data-app-photoswipe-container]',
-        itemPhoto: '[data-app-photoswipe-photo]',
-      },
-      pswp: {
-        container: '.pswp',
-        buttons: '[data-app-pswp-buttons]',
-      },
-    },
-    _classes: {
-      has_thumbs: 'has-thumbs',
-    },
-    _data: {
-      slider_name: 'appSlider',
-    },
-
-    _vars: {
-      sliders: {},
-      iframes: {},
-    },
-
-    /**
-     * Функция инициализации
-     */
-    init() {
-      this.initSliders();
-      this.initPhotoSwipe();
-      setTimeout(() => {
-        this.reInitSliders();
-      }, 750);
-    },
-
-    onPlayerReady(e) {
-      // console.log('hey Im ready', e);
-      let ytplayer = e.target,
-        iframe = ytplayer.h,
-        slide = iframe.closest('.swiper-slide');
-
-      this._vars.iframes[iframe.id] = ytplayer;
-      if (slide) {
-        slide.addEventListener('click', (e) => {
-          e.preventDefault();
-          ytplayer.playVideo();
-          iframe.classList.add('active');
-        });
-      }
-    },
-
-    onPlayerStateChange(e) {
-      // console.log('my state changed', e);
-      let ytplayer = e.target,
-        iframe = ytplayer.h;
-
-      if (ytplayer.getPlayerState() === 2) {
-        iframe.classList.remove('active');
-      }
-    },
-
-    /**
-     * инициализация слайдеров
-     */
-    initSliders() {
-      const that = this,
-        body = document.querySelector(this._selectors.body),
-        containers = body.querySelectorAll(this._selectors.sliders);
-
-      if (containers.length) {
-        containers.forEach((productContainer) => {
-          const sliders = productContainer.querySelectorAll('.swiper-slide'),
-            sliderContainer = productContainer.closest(this._selectors.slider_container),
-            sliderContainerWidth = sliderContainer.clientWidth,
-            sliderName = productContainer.dataset[this._data.slider_name],
-            navigation = productContainer.closest('.wrapper').querySelector(this._selectors.navigation),
-            navigationLeft = productContainer.closest('.wrapper').querySelector(this._selectors.navigation_left),
-            navigationRight = productContainer.closest('.wrapper').querySelector(this._selectors.navigation_right),
-            _setting = {
-              slidesPerView: 1,
-              grabCursor: true,
-              navigation: {
-                prevEl: navigationLeft,
-                nextEl: navigationRight,
-              },
-              // loop: true,
-              // autoplay: {
-              //   delay: 4500,
-              // },
-              on: {
-                init() {
-                  // this.el.addEventListener('mouseenter', (e) => {
-                  //   this.autoplay.stop();
-                  // });
-                  // this.el.addEventListener('mouseleave', () => {
-                  //   this.autoplay.start();
-                  // });
-                  // this.el.addEventListener('touchMove', () => {
-                  //   this.autoplay.stop();
-                  // });
-                },
-              },
-            };
-
-          sliderContainer.style.width = `${sliderContainerWidth}px`;
-          navigation.style.width = `${sliderContainerWidth}px`;
-          navigation.style.width = `${sliderContainerWidth}px`;
-          setTimeout(() => {
-            navigation.querySelectorAll('.arrow').forEach((_arrow) => {
-              _arrow.style.height = `${sliderContainer.clientHeight}px`;
-            });
-          }, 100);
-          sliders.forEach((_slide) => {
-            if (_slide.querySelector('iframe') && YT) {
-              let iframe = _slide.querySelector('iframe');
-
-              // iframe youtube
-              if (iframe.src.indexOf('youtube') != -1) {
-                let iframeId = iframe.src.substring(iframe.src.indexOf('/', 25) + 1),
-                  ytplayer,
-                  videoWrapper = _slide.querySelector(this._selectors.video_wrapper);
-
-                window.YT.ready(() => {
-                  ytplayer = new window.YT.Player(videoWrapper, {
-                    videoId: iframeId,
-                    width: '100%',
-                    events: {
-                      onReady: this.onPlayerReady.bind(that),
-                      onStateChange: this.onPlayerStateChange.bind(that),
-                    },
-                  });
-                });
-              }
-            }
-          });
-          if (productContainer.classList.contains(this._classes.has_thumbs)) {
-            let thumbs = body.querySelector(`[data-app-slider-thumbs='${sliderName}']`),
-              thumbsContainer = thumbs.closest(this._selectors.thumbs_container),
-              thumbsContainerWidth = thumbsContainer.clientWidth,
-              thumbsSetting = {
-                slidesPerView: 2,
-                watchSlidesVisibility: true,
-                watchSlidesProgress: true,
-                grabCursor: true,
-                breakpoints: {
-                  [320]: {
-                    slidesPerView: 3,
-                  },
-                  [720]: {
-                    slidesPerView: 4,
-                  },
-                },
-              },
-              swiperThumbs = new Swiper(thumbs, thumbsSetting);
-            thumbsContainer.style.width = `${thumbsContainerWidth}px`;
-            if (swiperThumbs) {
-              if ((window.innerWidth >= 320 && sliders.length > 3) || (window.innerWidth >= 720 && sliders.length > 4)) {
-                _setting.scrollbar = {
-                  el: '.swiper-scrollbar',
-                  draggable: true,
-                };
-              }
-              _setting.thumbs = {
-                swiper: swiperThumbs,
-              };
-              swiperThumbs.on('sliderMove', function (swiperThumbs, e) {
-                this.el.classList.add('dont-touch');
-              });
-              swiperThumbs.on('touchEnd', function (swiperThumbs, e) {
-                setTimeout(() => {
-                  this.el.classList.remove('dont-touch');
-                }, 200);
-              });
-            }
-          }
-          let swiperMain = new Swiper(productContainer, _setting);
-          this._vars.sliders[sliderName] = swiperMain;
-          swiperMain.on('slideChange', function () {
-            if (Object.keys(that._vars.iframes).length) {
-              let iframe = swiperMain.slides[swiperMain.previousIndex].querySelector(that._selectors.video_wrapper_inner);
-              if (iframe && that._vars.iframes[iframe.id]) {
-                let isVideoEvent = that._vars.iframes[iframe.id];
-                if (isVideoEvent.getPlayerState() === 1) {
-                  isVideoEvent.pauseVideo();
-                }
-              }
-            }
-          });
-        });
-      }
-    },
-
-    initPhotoSwipe() {
-      let photoItems = document.querySelectorAll(this._selectors.photoSwipe.itemPhoto),
-        container = document.querySelector(this._selectors.pswp.container);
-
-      if (photoItems.length && container) {
-        let itemsOption = [];
-
-        photoItems.forEach((_photo, i) => {
-          itemsOption.push({
-            src: _photo.dataset.appPhotoswipePhoto,
-            w: 1280,
-            h: 1024,
-          });
-          _photo.addEventListener('click', (e) => {
-            e.preventDefault();
-            let options = {
-                index: i,
-                bgOpacity: 0.85,
-                showHideOpacity: true,
-                closeOnVerticalDrag: true,
-                closeOnScroll: false,
-                showAnimationDuration: 300,
-                shareEl: false,
-                arrowEl: true,
-                fullscreenEl: false,
-                showCaption: false,
-                allowLongCaptions: false,
-                loop: false,
-              },
-              gallery = new PhotoSwipe(container, PhotoSwipeUI_Default, itemsOption, options);
-
-            gallery.init();
-          });
-        });
-      }
-    },
-
-    reInitSliders() {
-      const body = document.querySelector(this._selectors.body),
-        containers = body.querySelectorAll(this._selectors.sliders);
-
-      if (containers.length) {
-        containers.forEach((productContainer) => {
-          let slide = productContainer.querySelector('.swiper-slide');
-
-          if (slide && slide.swiperSlideSize < productContainer.clientWidth) {
-            this.initSliders();
-          }
-        });
-      }
-    },
-  };
-})();
-
 /*! PhotoSwipe Default UI - 4.1.3 - 2019-01-08
 * http://photoswipe.com
 * Copyright (c) 2019 Dmitry Semenov; */
@@ -10057,3 +9518,544 @@ window.ready(() => {
 var scriptUrl = 'https:\/\/www.youtube.com\/s\/player\/72d3c60a\/www-widgetapi.vflset\/www-widgetapi.js';window['yt_embedsEnableIframeSrcWithIntent'] =  true ;try{var ttPolicy=window.trustedTypes.createPolicy("youtube-widget-api",{createScriptURL:function(x){return x}});scriptUrl=ttPolicy.createScriptURL(scriptUrl)}catch(e){}var YT;if(!window["YT"])YT={loading:0,loaded:0};var YTConfig;if(!window["YTConfig"])YTConfig={"host":"https://www.youtube.com"};
 if(!YT.loading){YT.loading=1;(function(){var l=[];YT.ready=function(f){if(YT.loaded)f();else l.push(f)};window.onYTReady=function(){YT.loaded=1;for(var i=0;i<l.length;i++)try{l[i]()}catch(e$0){}};YT.setConfig=function(c){for(var k in c)if(c.hasOwnProperty(k))YTConfig[k]=c[k]};var a=document.createElement("script");a.type="text/javascript";a.id="www-widgetapi-script";a.src=scriptUrl;a.async=true;var c=document.currentScript;if(c){var n=c.nonce||c.getAttribute("nonce");if(n)a.setAttribute("nonce",n)}var b=
 document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})()};
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                        Cookies
+   *
+   *  ############################################################
+   */
+  app.modules.cookies = {
+    _selectors: {
+      body: 'body',
+      container: '[data-app-cookies]',
+      close: '[data-app-cookies-close]',
+    },
+    _class: {
+      active: 'active',
+    },
+
+    init() {
+      this._modalCookiesHandler();
+    },
+
+    /**
+     * Обработка бодалки куки
+     */
+    _modalCookiesHandler() {
+      if (!localStorage.hideCookies) {
+        let body = document.querySelector(this._selectors.body),
+          container = body.querySelector(this._selectors.container);
+
+        if (container) {
+          let closeBtn = container.querySelector(this._selectors.close);
+          setTimeout(() => {
+            container.classList.add(this._class.active);
+          }, 1600);
+          closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this._hideModalCookies(container);
+          });
+        }
+      }
+    },
+
+    /**
+     * Скрываем окно
+     * @param {Element} container
+     */
+    _hideModalCookies(container) {
+      container.classList.remove(this._class.active);
+      localStorage.hideCookies = true;
+    },
+  };
+})();
+
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                        Fixed Footer
+   *
+   *  ############################################################
+   */
+  app.modules.footerFix = {
+    _selectors: {
+      body: 'body',
+      header: '[data-app-header]',
+      container: '[data-app-container]',
+      footer: '[data-app-footer]',
+    },
+    _classes: {
+      snap: 'snap',
+    },
+    init() {
+      this._fixFooterHandler();
+    },
+    _fixFooterHandler() {
+      let body = document.querySelector(this._selectors.body),
+        header = body.querySelector(this._selectors.header),
+        container = body.querySelector(this._selectors.container),
+        footer = body.querySelector(this._selectors.footer);
+
+      if (header && container && footer) {
+        let windowHeight = innerHeight,
+          headerHeight = header.clientHeight,
+          containerHeight = container.clientHeight + parseInt(getComputedStyle(container).marginBottom),
+          footerHeight = footer.clientHeight,
+          totalHeight = headerHeight + containerHeight + footerHeight;
+
+        if (totalHeight > windowHeight) {
+          container.classList.add(this._classes.snap);
+          footer.classList.add(this._classes.snap);
+        }
+      }
+    },
+  };
+})();
+
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                        Lazy load
+   *
+   *  ############################################################
+   */
+  app.modules.lazyLoad = {
+    _selectors: {
+      body: 'body',
+      img: '[data-app-catalog-img]',
+    },
+    _classes: {
+      loaded: 'loaded',
+      loading: 'loading',
+    },
+    init() {
+      this._lazyLoadHandler();
+    },
+    _lazyLoadHandler() {
+      let body = document.querySelector(this._selectors.body),
+        images = body.querySelectorAll(this._selectors.img),
+        options = {
+          root: null,
+          marginRoot: '0px',
+          treshold: 0.05,
+        },
+        observer = new IntersectionObserver((_images) => {
+          _images.forEach((e) => {
+            let _img = e.target,
+              imgUrl = _img.dataset.appCatalogImg;
+
+            if (e.isIntersecting) {
+              _img.style.backgroundImage = `url(${imgUrl})`;
+              let fakeImg = new Image();
+
+              fakeImg.addEventListener('load', (e) => {
+                _img.classList.add(this._classes.loaded);
+                setTimeout(() => {
+                  _img.parentElement.classList.remove(this._classes.loading);
+                }, 500);
+              });
+              fakeImg.src = imgUrl;
+            }
+          });
+        }, options);
+
+      images.forEach((img) => {
+        observer.observe(img);
+      });
+    },
+  };
+})();
+
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                       SideMobileMenu
+   *
+   *  ############################################################
+   */
+  app.modules.sideMobileMenu = {
+    _selectors: {
+      body: 'body',
+      nav_container: '[data-app-nav-container]',
+      nav_btn: '[data-app-nav-btn]',
+      shape: '[data-app-shape]',
+    },
+    _classes: {
+      disable: 'disabled-scroll',
+      toggle: 'toggle',
+    },
+    init() {
+      this._listeners();
+      this._mobileMenuHandler();
+    },
+
+    _listeners() {
+      if (window.innerWidth < 720) {
+        document.querySelector(this._selectors.nav_container).addEventListener('touchstart', this._handleTouch, false);
+        document.querySelector(this._selectors.nav_container).addEventListener('touchmove', this._handleTouch, false);
+        document.querySelector(this._selectors.nav_container).addEventListener('touchend', this._handleTouchEnd, false);
+      }
+    },
+
+    _handleTouch(e) {
+      if (!e.target.closest('.toggle-menu') && !e.target.classList.contains('toggle-menu')) {
+        console.log('e', e);
+        let x = e.changedTouches[0].clientX,
+          total = this.clientWidth,
+          position = x - total;
+        if (position < 0) this.style.left = x - total + 'px';
+        else if (position >= 0) this.style.left = 0 + 'px';
+      }
+    },
+
+    _handleTouchEnd(e) {
+      let navBtn = e.currentTarget.querySelector('[data-app-nav-btn]'),
+        x = e.changedTouches[0].clientX,
+        total = this.clientWidth,
+        position = x - total;
+
+      this.style.left = '';
+      if (position <= -total * 0.5) {
+        navBtn.click();
+      }
+    },
+
+    _mobileMenuHandler() {
+      const body = document.querySelector(this._selectors.body),
+        shape = body.querySelector(this._selectors.shape),
+        navContainer = body.querySelector(this._selectors.nav_container),
+        navBtn = body.querySelector(this._selectors.nav_btn);
+
+      if (navContainer && navBtn) {
+        navBtn.addEventListener('click', () => {
+          navContainer.classList.toggle(this._classes.toggle);
+          body.classList.toggle(this._classes.disable);
+        });
+        body.addEventListener('click', (e) => {
+          if (e.target === shape) {
+            navContainer.classList.remove(this._classes.toggle);
+            body.classList.remove(this._classes.disable);
+          }
+        });
+      }
+    },
+  };
+})();
+
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                        Scroll Down
+   *
+   *  ############################################################
+   */
+  app.modules.scroll_down = {
+    _selectors: {
+      body: 'body',
+      btn: '[data-app-arrow-down]',
+    },
+
+    init() {
+      this._btnClickInint();
+    },
+
+    /**
+     * Инициализация обработчика
+     */
+    _btnClickInint() {
+      let btn = document.querySelector(this._selectors.btn);
+      if (btn) {
+        btn.addEventListener('click', this._btnClickHandler);
+      }
+    },
+
+    /**
+     * Обработка клика
+     * @param {Event} e
+     */
+    _btnClickHandler(e) {
+      let body = document.querySelector('body'),
+        bodyHeight = body.clientHeight;
+
+      scrollTo(0, bodyHeight);
+    },
+  };
+})();
+
+(function () {
+  'use strict';
+  /**
+   *  ############################################################
+   *
+   *                       Модуль слайдеров
+   *
+   *  ############################################################
+   */
+
+  // data-app-slider="name" - на контейнер над слайдером
+  // data-app-slider-thumbs="name" - на контейнер превьюх
+
+  app.modules.slider = {
+    _selectors: {
+      body: 'body',
+      sliders: '[data-app-slider]',
+      slider_container: '[data-app-slider-container]',
+      thumbs_container: '[data-app-thumbs-container]',
+      video_wrapper: '[data-app-video-wrapper]',
+      video_wrapper_inner: '.wrapper-video__inner',
+      navigation: '[data-app-arrows-container]',
+      navigation_left: '[data-app-arrow-prev]',
+      navigation_right: '[data-app-arrow-next]',
+      photoSwipe: {
+        container: '[data-app-photoswipe-container]',
+        itemPhoto: '[data-app-photoswipe-photo]',
+      },
+      pswp: {
+        container: '.pswp',
+        buttons: '[data-app-pswp-buttons]',
+      },
+    },
+    _classes: {
+      has_thumbs: 'has-thumbs',
+    },
+    _data: {
+      slider_name: 'appSlider',
+    },
+
+    _vars: {
+      sliders: {},
+      iframes: {},
+    },
+
+    /**
+     * Функция инициализации
+     */
+    init() {
+      this.initSliders();
+      this.initPhotoSwipe();
+      setTimeout(() => {
+        this.reInitSliders();
+      }, 750);
+    },
+
+    onPlayerReady(e) {
+      // console.log('hey Im ready', e);
+      let ytplayer = e.target,
+        iframe = ytplayer.h,
+        slide = iframe.closest('.swiper-slide');
+
+      this._vars.iframes[iframe.id] = ytplayer;
+      if (slide) {
+        slide.addEventListener('click', (e) => {
+          e.preventDefault();
+          ytplayer.playVideo();
+          iframe.classList.add('active');
+        });
+      }
+    },
+
+    onPlayerStateChange(e) {
+      // console.log('my state changed', e);
+      let ytplayer = e.target,
+        iframe = ytplayer.h;
+
+      if (ytplayer.getPlayerState() === 2) {
+        iframe.classList.remove('active');
+      }
+    },
+
+    /**
+     * инициализация слайдеров
+     */
+    initSliders() {
+      const that = this,
+        body = document.querySelector(this._selectors.body),
+        containers = body.querySelectorAll(this._selectors.sliders);
+
+      if (containers.length) {
+        containers.forEach((productContainer) => {
+          const sliders = productContainer.querySelectorAll('.swiper-slide'),
+            sliderContainer = productContainer.closest(this._selectors.slider_container),
+            sliderContainerWidth = sliderContainer.clientWidth,
+            sliderName = productContainer.dataset[this._data.slider_name],
+            navigation = productContainer.closest('.wrapper').querySelector(this._selectors.navigation),
+            navigationLeft = productContainer.closest('.wrapper').querySelector(this._selectors.navigation_left),
+            navigationRight = productContainer.closest('.wrapper').querySelector(this._selectors.navigation_right),
+            _setting = {
+              slidesPerView: 1,
+              grabCursor: true,
+              navigation: {
+                prevEl: navigationLeft,
+                nextEl: navigationRight,
+              },
+              // loop: true,
+              // autoplay: {
+              //   delay: 4500,
+              // },
+              on: {
+                init() {
+                  // this.el.addEventListener('mouseenter', (e) => {
+                  //   this.autoplay.stop();
+                  // });
+                  // this.el.addEventListener('mouseleave', () => {
+                  //   this.autoplay.start();
+                  // });
+                  // this.el.addEventListener('touchMove', () => {
+                  //   this.autoplay.stop();
+                  // });
+                },
+              },
+            };
+
+          sliderContainer.style.width = `${sliderContainerWidth}px`;
+          navigation.style.width = `${sliderContainerWidth}px`;
+          navigation.style.width = `${sliderContainerWidth}px`;
+          setTimeout(() => {
+            navigation.querySelectorAll('.arrow').forEach((_arrow) => {
+              _arrow.style.height = `${sliderContainer.clientHeight}px`;
+            });
+          }, 100);
+          sliders.forEach((_slide) => {
+            if (_slide.querySelector('iframe') && YT) {
+              let iframe = _slide.querySelector('iframe');
+
+              // iframe youtube
+              if (iframe.src.indexOf('youtube') != -1) {
+                let iframeId = iframe.src.substring(iframe.src.indexOf('/', 25) + 1),
+                  ytplayer,
+                  videoWrapper = _slide.querySelector(this._selectors.video_wrapper);
+
+                window.YT.ready(() => {
+                  ytplayer = new window.YT.Player(videoWrapper, {
+                    videoId: iframeId,
+                    width: '100%',
+                    events: {
+                      onReady: this.onPlayerReady.bind(that),
+                      onStateChange: this.onPlayerStateChange.bind(that),
+                    },
+                  });
+                });
+              }
+            }
+          });
+          if (productContainer.classList.contains(this._classes.has_thumbs)) {
+            let thumbs = body.querySelector(`[data-app-slider-thumbs='${sliderName}']`),
+              thumbsContainer = thumbs.closest(this._selectors.thumbs_container),
+              thumbsContainerWidth = thumbsContainer.clientWidth,
+              thumbsSetting = {
+                slidesPerView: 2,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                grabCursor: true,
+                breakpoints: {
+                  [320]: {
+                    slidesPerView: 3,
+                  },
+                  [720]: {
+                    slidesPerView: 4,
+                  },
+                },
+              },
+              swiperThumbs = new Swiper(thumbs, thumbsSetting);
+            thumbsContainer.style.width = `${thumbsContainerWidth}px`;
+            if (swiperThumbs) {
+              if ((window.innerWidth >= 320 && sliders.length > 3) || (window.innerWidth >= 720 && sliders.length > 4)) {
+                _setting.scrollbar = {
+                  el: '.swiper-scrollbar',
+                  draggable: true,
+                };
+              }
+              _setting.thumbs = {
+                swiper: swiperThumbs,
+              };
+              swiperThumbs.on('sliderMove', function (swiperThumbs, e) {
+                this.el.classList.add('dont-touch');
+              });
+              swiperThumbs.on('touchEnd', function (swiperThumbs, e) {
+                setTimeout(() => {
+                  this.el.classList.remove('dont-touch');
+                }, 200);
+              });
+            }
+          }
+          let swiperMain = new Swiper(productContainer, _setting);
+          this._vars.sliders[sliderName] = swiperMain;
+          swiperMain.on('slideChange', function () {
+            if (Object.keys(that._vars.iframes).length) {
+              let iframe = swiperMain.slides[swiperMain.previousIndex].querySelector(that._selectors.video_wrapper_inner);
+              if (iframe && that._vars.iframes[iframe.id]) {
+                let isVideoEvent = that._vars.iframes[iframe.id];
+                if (isVideoEvent.getPlayerState() === 1) {
+                  isVideoEvent.pauseVideo();
+                }
+              }
+            }
+          });
+        });
+      }
+    },
+
+    initPhotoSwipe() {
+      let photoItems = document.querySelectorAll(this._selectors.photoSwipe.itemPhoto),
+        container = document.querySelector(this._selectors.pswp.container);
+
+      if (photoItems.length && container) {
+        let itemsOption = [];
+
+        photoItems.forEach((_photo, i) => {
+          itemsOption.push({
+            src: _photo.dataset.appPhotoswipePhoto,
+            w: 1280,
+            h: 1024,
+          });
+          _photo.addEventListener('click', (e) => {
+            e.preventDefault();
+            let options = {
+                index: i,
+                bgOpacity: 0.85,
+                showHideOpacity: true,
+                closeOnVerticalDrag: true,
+                closeOnScroll: false,
+                showAnimationDuration: 300,
+                shareEl: false,
+                arrowEl: true,
+                fullscreenEl: false,
+                showCaption: false,
+                allowLongCaptions: false,
+                loop: false,
+              },
+              gallery = new PhotoSwipe(container, PhotoSwipeUI_Default, itemsOption, options);
+
+            gallery.init();
+          });
+        });
+      }
+    },
+
+    reInitSliders() {
+      const body = document.querySelector(this._selectors.body),
+        containers = body.querySelectorAll(this._selectors.sliders);
+
+      if (containers.length) {
+        containers.forEach((productContainer) => {
+          let slide = productContainer.querySelector('.swiper-slide');
+
+          if (slide && slide.swiperSlideSize < productContainer.clientWidth) {
+            this.initSliders();
+          }
+        });
+      }
+    },
+  };
+})();
