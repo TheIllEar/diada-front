@@ -273,7 +273,6 @@ window.ready(() => {
 
     _handleTouch(e) {
       if (e.type === 'touchmove' && !e.target.closest('.toggle-menu') && !e.target.classList.contains('toggle-menu')) {
-        e.preventDefault();
         let x = e.changedTouches[0].clientX,
           total = this.clientWidth,
           position = x - total;
@@ -284,7 +283,6 @@ window.ready(() => {
 
     _handleTouchEnd(e) {
       if (!e.target.closest('.toggle-menu') && !e.target.classList.contains('toggle-menu')) {
-        e.preventDefault();
         let navBtn = e.currentTarget.querySelector('[data-app-nav-btn]'),
           x = e.changedTouches[0].clientX,
           total = this.clientWidth,
