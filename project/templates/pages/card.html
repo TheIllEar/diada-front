@@ -52,31 +52,12 @@
                 <div class="slider card-thumb" data-app-thumbs-container>
                     <div class="swiper-container thumbs-slider" data-app-slider-thumbs="projects">
                         <div class="swiper-wrapper">
-                            <!-- Video -->
-                            <!-- {% for _video in item.videos %}
-                                <div class="swiper-slide card-thumb__slide">
-                                    <div class="wrapper-image">
-                                        <div class="default-image">
-                                            <div class="default-image__inner default-image--empty"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            {% for _video in item.embedVideo %}
-                                <div class="swiper-slide card-thumb__slide">
-                                    <div class="wrapper-image">
-                                        <div class="default-image">
-                                            <div class="default-image__inner default-image--empty"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %} -->
                             <!-- Thumbs -->
                             {% for _thumb in item.thumbs %}
                                 <div class="swiper-slide card-thumb__slide">
                                     <div class="wrapper-image">
                                         <div class="default-image">
-                                            <div class="default-image__inner" style="background-image: url({{_thumb}});"></div>
+                                            <div class="default-image__inner default-image--empty" style="background-image: url({{_thumb}});"></div>
                                         </div>
                                     </div>
                                 </div>

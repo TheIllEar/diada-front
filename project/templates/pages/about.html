@@ -2,7 +2,7 @@
 <section class="container container-about" data-app-container>
   <div class="main-title{% if page.caption == '' %} no-caption{% endif %}">
     {% if page.caption %}
-      <h1>{{page.caption}}</h1>
+    <h1>{{page.caption}}</h1>
     {% endif %}
   </div>
   <div class="about__wrapper wrapper">
@@ -12,11 +12,15 @@
     <div class="wrapper-info">
       <ul class="wrapper-info__list">
         <li class="wrapper-info__item">
-          <!-- <div class="title">About<div class="desc">{{page.PageDescription}}</div></div> -->
           <div class="title">
             SOUND
             <div class="desc">
-              <div class="desc__title">post production [sound design & music] for:</div>
+              <div class="desc__title">
+                <div class="divide">
+                  <div class="divide__item">post production</div>
+                  <div class="divide__item">[sound design & music] for:</div>
+                </div>
+              </div>
               commercials<br />
               short films<br />
               animation and motion graphics<br />
@@ -35,8 +39,16 @@
           <div class="title">
             VISUALS
             <div class="desc">
-              generative digital art [motion graphics]<br />
-              graphic design [logos, covers, posters]<br />
+              <div class="divide">
+                <div class="divide__item">generative digital art</div>
+                <div class="divide__item">[motion graphics]</div>
+              </div>
+              <div class="divide">
+                <div class="divide__item">graphic design</div>
+                <div class="divide__item">[logos, covers, posters]</div>
+              </div>
+              <!-- generative digital art [motion graphics]<br />
+              graphic design [logos, covers, posters]<br /> -->
             </div>
           </div>
         </li>
@@ -46,9 +58,9 @@
       </ul>
     </div>
     <div class="wrapper-image">
-        <div class="default-image">
-            <div class="default-image__inner" style="background-image: url(../../img/services.png);"></div>
-        </div>
+      <div class="default-image">
+        <div class="default-image__inner" style="background-image: url(../../img/services.png)"></div>
+      </div>
     </div>
     <div class="only-mobile">{% include "components/social_list.html" %}</div>
     <!-- <div class="only-tablet arrow-down" data-app-arrow-down>
