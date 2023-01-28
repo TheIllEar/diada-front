@@ -9,8 +9,8 @@ import cron from 'node-cron';
 import { _getImg, _getImages, _getVideos } from '../custom/helper.js';
 
 const router = Router(),
-  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&populate=Video&populate=Thumbs&sort=Sort',
-  // urlProjects = 'http://localhost:1337/api/projects?populate=Img&populate=Video&populate=Thumbs&sort=Sort',
+  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&populate=CardImages&populate=Video&populate=Thumbs&sort=Sort',
+  // urlProjects = 'http://localhost:1337/api/projects?populate=Img&populate=CardImages&populate=Video&populate=Thumbs&sort=Sort',
   getCards = async () => {
     try {
       let responseProject = await fetch(urlProjects),
@@ -32,15 +32,15 @@ const router = Router(),
   },
   projectsHandler = (_projects) => {
     _projects.data.forEach((_project) => {
-      const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=Video&populate=Thumbs`;
-      // const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=Video&populate=Thumbs`;
+      const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=CardImages&populate=Video&populate=Thumbs`;
+      // const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=CardImages&populate=Video&populate=Thumbs`;
       router.get(`/work/${_project.attributes.Slug}`, async function (req, res, next) {
         try {
           const responseCard = await fetch(_cardUrl),
             _card = await responseCard.json(),
             _embedVideo = _card.data.attributes.Embed_video,
             _embedAudio = _card.data.attributes.Embed_audio,
-            _img = _card.data.attributes.Img.data,
+            _img = _card.data.attributes.CardImages.data,
             _thumb = _card.data.attributes.Thumbs.data,
             _video = _card.data.attributes.Video.data,
             { _imgDefult } = _getImg(_img),

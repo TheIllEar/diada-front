@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!-- Файл sitemap.xml динамически создан сайтом https://gensitemap.ru/ 15.10.2022 14:23,
+<!-- Файл sitemap.xml динамически создан сайтом https://gensitemap.ru/ 28.01.2023 13:52,
 	всего найдено 15. страниц-->
 	<url>
 		<loc>https://diada.studio/</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>1</priority>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/services</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/about</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/hemkorp</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/video-explainer</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/for-apples</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/zrt-16bit</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/video-explainer</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/lithium-ion-battery</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/lithium-ion-battery</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/nabka-dance-school</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/nabka-dance-school</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/electrosila-podcast</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/electrosila-podcast</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/hemkorp</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/tv-score</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/tv-score</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/electrodance</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/electrodance</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/anime-fight</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/anime-fight</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/hello</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/for-apples</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
+		<loc>https://diada.studio/work/generative-art</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
 		<priority>0.5</priority>
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/hello</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
-		<priority>0.3</priority>
-		<changefreq>daily</changefreq>
+		<loc>https://diada.studio/work/zrt-16bit</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
+		<priority>0.5</priority>
+		<changefreq>hourly</changefreq>
 	</url>
 	<url>
-		<loc>https://diada.studio/works/generative-art</loc>
-		<lastmod>2022-10-15T14:23:16+03:00</lastmod>
-		<priority>0.3</priority>
-		<changefreq>daily</changefreq>
+		<loc>https://diada.studio/work/event-posters</loc>
+		<lastmod>2023-01-28T13:52:58+03:00</lastmod>
+		<priority>0.5</priority>
+		<changefreq>hourly</changefreq>
 	</url>
 </urlset>		     		    			    
