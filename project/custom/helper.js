@@ -2,8 +2,11 @@ const /**
    * Получаем изображение
    */
   _getImg = (_img) => {
+    let 
+      _imgDefult = [], 
+      _imgSmall = [];
+
     if (_img) {
-      let _imgDefult, _imgSmall;
       if (_img[0]) {
         _img = _img[0];
       }
@@ -13,14 +16,17 @@ const /**
         return { _imgDefult, _imgSmall };
       }
     }
+    return { _imgDefult, _imgSmall };
   },
   /**
    * Получаем изображения
    */
   _getImages = (_images) => {
+    let 
+      _defultImages = [],
+      _smallImages = [];
+
     if (_images) {
-      let _defultImages = [],
-        _smallImages = [];
         _images.forEach((_img) => {
         let _imgDefult = _img.attributes.formats.hasOwnProperty('medium') ? _img.attributes.formats.medium.url : _img.attributes.formats.thumbnail.url,
           _imgSmall = _img.attributes.formats.hasOwnProperty('small') ? _img.attributes.formats.small.url : _imgDefult;
@@ -34,6 +40,7 @@ const /**
         return { _defultImages, _smallImages };
       }
     }
+    return { _defultImages, _smallImages };
   },
   /**
    * Получаем видео

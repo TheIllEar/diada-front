@@ -550,19 +550,21 @@ window.ready(() => {
             };
 
           sliderContainer.style.width = `${sliderContainerWidth}px`;
-          navigation.style.width = `${sliderContainerWidth}px`;
-          navigation.style.width = `${sliderContainerWidth}px`;
-          setTimeout(() => {
-            navigation.querySelectorAll('.arrow').forEach((_arrow) => {
-              _arrow.style.height = `${sliderContainer.clientHeight}px`;
-            });
-          }, 100);
+          if (navigation) {
+            navigation.style.width = `${sliderContainerWidth}px`;
+            navigation.style.width = `${sliderContainerWidth}px`;
+            setTimeout(() => {
+              navigation.querySelectorAll('.arrow').forEach((_arrow) => {
+                _arrow.style.height = `${sliderContainer.clientHeight}px`;
+              });
+            }, 100);
+          }
           sliders.forEach((_slide) => {
             if (_slide.querySelector('iframe')) {
               this._iframeHandler(_slide);
             }
           });
-          if (productContainer.classList.contains(this._classes.has_thumbs)) {
+          if (productContainer.classList.contains(this._classes.has_thumbs) && body.querySelector(`[data-app-slider-thumbs='${sliderName}']`)) {
             let thumbs = body.querySelector(`[data-app-slider-thumbs='${sliderName}']`),
               thumbsContainer = thumbs.closest(this._selectors.thumbs_container),
               thumbsContainerWidth = thumbsContainer.clientWidth,

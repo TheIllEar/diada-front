@@ -14,7 +14,7 @@
         {% endif %}
         <meta property="og:image" content="{{page.img}}">
         <div class="card-view__wrapper wrapper">
-            {% if item.images|length > 1 or item.images|length === 1 and (item.videos|length or item.embedVideo|length) %}
+            {% if item.images|length or item.videos|length or item.embedVideo|length %}
                 <div class="slider card-slider" data-app-slider-container>
                     <div class="swiper-container has-thumbs" data-app-slider="projects" data-app-swiper-container>
                         <div class="swiper-wrapper" data-app-photoswipe-container>
@@ -48,38 +48,36 @@
                         </div>
                     </div>
                 </div>
-                {% include 'components/pagination.html' %}
-                <div class="slider card-thumb" data-app-thumbs-container>
-                    <div class="swiper-container thumbs-slider" data-app-slider-thumbs="projects">
-                        <div class="swiper-wrapper">
-                            <!-- Thumbs -->
-                            {% for _thumb in item.thumbs %}
-                                <div class="swiper-slide card-thumb__slide">
-                                    <div class="wrapper-image">
-                                        <div class="default-image">
-                                            <div class="default-image__inner default-image--empty" style="background-image: url({{_thumb}});"></div>
+                {% if item.images|length > 1 or item.videos|length > 1 or item.embedVideo|length > 1 or (item.videos|length and item.embedVideo|length) or (item.videos|length and item.images|length) or (item.images|length and item.embedVideo|length) %}
+                    {% include 'components/pagination.html' %}
+                    <div class="slider card-thumb" data-app-thumbs-container>
+                        <div class="swiper-container thumbs-slider" data-app-slider-thumbs="projects">
+                            <div class="swiper-wrapper">
+                                <!-- Thumbs -->
+                                {% for _thumb in item.thumbs %}
+                                    <div class="swiper-slide card-thumb__slide">
+                                        <div class="wrapper-image">
+                                            <div class="default-image">
+                                                <div class="default-image__inner default-image--empty" style="background-image: url({{_thumb}});"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
-                            <!-- Img -->
-                            {% for _img in item.images %}
-                                <div class="swiper-slide card-thumb__slide">
-                                    <div class="wrapper-image">
-                                        <div class="default-image">
-                                            <div class="default-image__inner" style="background-image: url({{_img}});"></div>
+                                {% endfor %}
+                                <!-- Img -->
+                                {% for _img in item.images %}
+                                    <div class="swiper-slide card-thumb__slide">
+                                        <div class="wrapper-image">
+                                            <div class="default-image">
+                                                <div class="default-image__inner" style="background-image: url({{_img}});"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-scrollbar"></div>
                         </div>
-                        <div class="swiper-scrollbar"></div>
                     </div>
-                </div>
-            {% else %} 
-                <div class="wrapper-image">
-                    {% include 'components/default_image.html' %}
-                </div>
+                {%endif%}
             {%endif%}
             {%if item.embedAudio%}
                 <div class="wrapper-audio">
@@ -115,5 +113,7 @@
             </div>
         </div>
     </section>
-    {% include 'components/photoswipe.html' %}
+    {% if item.images|length %}
+        {% include 'components/photoswipe.html' %}
+    {% endif %}
 {% endblock %}
