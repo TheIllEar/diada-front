@@ -1,0 +1,67 @@
+.slider {
+  position: relative;
+  overflow: hidden;
+  .swiper-container {
+    .swiper-wrapper {
+      display: flex;
+      .swiper-slide {
+        flex-shrink: 0;
+        transition-property: transform;
+      }
+    }
+  }
+  &-pagination {
+    display: none;
+  }
+  .swiper-scrollbar {
+    background-color: $color_grey3;
+    &-drag {
+      height: 4px;
+      background-color: $color_accent;
+      cursor: grabbing;
+    }
+  }
+  @include breakpoint($tablet) {
+    &-pagination {
+      display: none;
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 70%;
+      .arrow {
+        transition: 0.3s;
+        position: absolute;
+        display: flex;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        width: 22%;
+        height: 318px;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        z-index: 40;
+        opacity: 0.04;
+        &-prev {
+          @include bg(65%, 'center left');
+          background-image: url(../../img/arrow.svg);
+          left: -22%;
+        }
+        &-next {
+          @include bg(65%, 'center right');
+          background-image: url(../../img/arrow_reverse.svg);
+          right: -22%;
+        }
+        &:hover,
+        &:focus,
+        &:active {
+          opacity: 0.08;
+        }
+      }
+    }
+  }
+}

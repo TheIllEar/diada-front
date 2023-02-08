@@ -1,0 +1,36 @@
+.default-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  &.loading {
+    @include loading();
+  }
+  &__inner {
+    @include bg();
+    @include padding-hack(65%);
+    position: relative;
+    z-index: 6;
+    opacity: 0;
+    &.loaded {
+      @include transition();
+      opacity: 1;
+    }
+  }
+  &--empty {
+    position: relative;
+    background-color: $color_black;
+    &::before {
+      @include bg();
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 55px;
+      height: 57px;
+      background-image: url(../../img/play.svg);
+    }
+  }
+}

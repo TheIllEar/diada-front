@@ -1,0 +1,75 @@
+.footer {
+  position: relative;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $mobile_offset;
+  &.snap {
+    position: fixed;
+    bottom: 0;
+    z-index: 0;
+    height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .copyright,
+  .theillear {
+    font-size: $font_size_footer_nav_mobile;
+    min-width: 30%;
+    font-weight: 600;
+  }
+  .theillear {
+    text-align: right;
+    &__link {
+      color: $color_purple;
+      @include fake() {
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        transform: translateY(5px);
+        transition: 0.4s;
+        height: 0px;
+        background-color: $color_purple;
+        opacity: 0;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        &::after {
+          transform: translateY(0);
+          opacity: 0.5;
+          height: 2px;
+        }
+      }
+    }
+  }
+  .social-list {
+    display: none;
+  }
+  @include breakpoint($tablet) {
+    padding-bottom: 15px;
+    &.snap {
+      height: 100px;
+    }
+    .social-list {
+      display: flex;
+      justify-content: center;
+      width: fit-content;
+      &__item {
+        margin-right: $mobile_offset;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  @include breakpoint($desktop) {
+    padding: $mobile_offset $desktop_offset;
+    padding-bottom: 15px;
+    .copyright,
+    .theillear {
+      font-size: $font_size_footer_nav_tablet;
+    }
+  }
+}

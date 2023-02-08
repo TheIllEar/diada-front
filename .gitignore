@@ -1,6 +1,4 @@
 /node_modules
-/project/static/js/dev
-/project/static/styles/scss
 /gulpfile.js
 /DS_Store
 /.DS_Store

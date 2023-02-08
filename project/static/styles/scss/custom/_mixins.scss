@@ -1,0 +1,119 @@
+//Breakpoints
+@mixin breakpoint($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+//Img
+@mixin bg($size: cover, $pos: center, $repeat: no-repeat) {
+  background-repeat: #{$repeat};
+  background-size: #{$size};
+  background-position: #{$pos};
+}
+
+@mixin padding-hack($padding: 50%, $after: true) {
+  @if ($after) {
+    &::after {
+      content: '';
+      display: block;
+      padding-top: $padding;
+    }
+  } @else {
+    &::before {
+      content: '';
+      display: block;
+      padding-top: $padding;
+    }
+  }
+}
+
+@mixin loading() {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle farthest-corner at center, $color_accent, $color_orange_light 85%);
+    background-size: 600% 100%;
+    animation: preloader 4s ease infinite;
+    transform: scale(2) rotate(210deg);
+    z-index: 2;
+  }
+}
+
+@mixin fake($after: true) {
+  position: relative;
+  @if ($after) {
+    &::after {
+      content: '';
+      position: absolute;
+      @content;
+    }
+  } @else {
+    &::before {
+      content: '';
+      position: absolute;
+      @content;
+    }
+  }
+}
+
+//Fonts
+@mixin fs($title) {
+  @if ($title == 'card-title') {
+    font-size: $font_size_title_mobile;
+    @include breakpoint($tablet) {
+      font-size: $font_size_title_tablet;
+    }
+    @include breakpoint($desktop) {
+      font-size: $font_size_title_desktop;
+    }
+    @include breakpoint($large) {
+      font-size: $font_size_title_large;
+    }
+  }
+  @if ($title == 'card-kind') {
+    font-size: $font_size_kind_mobile;
+    @include breakpoint($tablet) {
+      font-size: $font_size_kind_tablet;
+    }
+    @include breakpoint($desktop) {
+      font-size: $font_size_kind_desktop;
+    }
+    @include breakpoint($large) {
+      font-size: $font_size_kind_large;
+    }
+  }
+  @if ($title == 'content') {
+    font-size: $font_size_kind_mobile;
+    @include breakpoint($tablet) {
+      font-size: $font_size_kind_tablet;
+    }
+    @include breakpoint($desktop) {
+      font-size: $font_size_kind_desktop;
+    }
+    @include breakpoint($large) {
+      font-size: $font_size_kind_large;
+    }
+  }
+}
+
+//Transition
+@mixin transition($type: all) {
+  transition: #{$type} 0.3s ease-in-out;
+}
+
+//Gradient text
+@mixin gradient_text($from, $to) {
+  //add rotate
+  background: linear-gradient(#{$from} 0%, #{$to} 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@mixin gradient($rotate: 0, $from, $to) {
+  //add rotate
+  background: linear-gradient(#{$rotate}, #{$from} 0%, #{$to} 100%);
+}

@@ -1,0 +1,71 @@
+.social-list {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 100%;
+  &__item {
+    @include transition();
+    background-color: $color_main;
+    border: 1.5px solid $color_accent;
+    border-radius: $circle_radius;
+    width: 37px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .nav-link {
+    @include bg();
+    height: 25px;
+    width: 25px;
+    &--inst {
+      background-image: url(../../img/inst_r.svg);
+    }
+    &--upwork {
+      background-image: url(../../img/upwork_r.svg);
+    }
+    &--youtube {
+      background-image: url(../../img/youtube_r.svg);
+      width: 28px;
+      height: 28px;
+    }
+    &--vk {
+      background-image: url(../../img/vk_r.svg);
+    }
+    &--vimeo {
+      background-image: url(../../img/vimeo_r.svg);
+      height: 21px;
+      width: 21px;
+    }
+    &--telegram {
+      background-image: url(../../img/telegram_r.svg);
+    }
+    &--soundcloud {
+      background-image: url(../../img/soundcloud_r.svg);
+    }
+  }
+  @include breakpoint($tablet) {
+    &__item {
+      width: 35px;
+      height: 35px;
+    }
+    .nav-link {
+      height: 23px;
+      width: 23px;
+      &--youtube {
+        width: 25px;
+        height: 25px;
+      }
+      &--vk {
+        width: 22px;
+        height: 22px;
+      }
+      &--vimeo {
+        height: 20px;
+        width: 21px;
+      }
+    }
+  }
+}
