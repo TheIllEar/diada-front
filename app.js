@@ -34,7 +34,7 @@ app.use(nocache());
 app.set('etag', false);
 
 // .htaccess
-app.use(RewriteMiddleware(RewriteOptions));
+// app.use(RewriteMiddleware(RewriteOptions));
 
 //static and routes
 app.use(express.static(path.join(__dirname, 'project/static')));
