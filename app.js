@@ -15,7 +15,7 @@ const app = express(),
   __dirname = dirname(__filename),
   PORT = process.env.PORT || 3000,
   RewriteOptions = {
-    file: path.resolve(__dirname, 'project/static/.htaccess'),
+    file: path.resolve(__dirname, '.htaccess'),
     verbose: (process.env.ENV_NODE == 'development'),
     watch: (process.env.ENV_NODE == 'development'),
   };
