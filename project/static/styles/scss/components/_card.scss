@@ -1,11 +1,18 @@
 .card {
+  transition: 0.6s;
   position: relative;
-  display: grid;
   text-align: center;
-  width: 100%;
+  width: 0;
   overflow: hidden;
   &.loading {
     @include loading();
+  }
+  &.active {
+    width: 100%;
+  }
+  &.hide {
+    animation: animationHideBlock 0.6s;
+    animation-fill-mode: forwards;
   }
   &__inner {
     @include bg();
@@ -17,6 +24,7 @@
     &.loaded {
       @include transition();
       opacity: 1;
+      width: 100%;
     }
     &::before {
       content: '';
@@ -48,45 +56,21 @@
       font-style: italic;
     }
   }
-  &--first {
-    grid-area: c1;
-  }
-  &--second {
-    grid-area: c2;
-  }
-  &:nth-child(3) {
-    grid-area: c3;
-  }
-  &:nth-child(4) {
-    grid-area: c4;
-  }
-  &:nth-child(5) {
-    grid-area: c5;
-  }
-  &:nth-child(6) {
-    grid-area: c6;
-  }
-  &:nth-child(7) {
-    grid-area: c7;
-  }
-  &:nth-child(8) {
-    grid-area: c8;
-  }
-  &:nth-child(9) {
-    grid-area: c9;
-  }
-  &:nth-child(10) {
-    grid-area: c10;
-    display: none;
+  @include breakpoint($middle-mobile) {
+    &.active {
+      width: 50%;
+    }
   }
   @include breakpoint($tablet) {
-    &:nth-child(9) {
-      display: none;
+    &.active {
+      width: calc(100% / 3);
     }
   }
   @include breakpoint($desktop) {
     transition: 0.3s;
-    overflow: hidden;
+    &.active {
+      width: 25%;
+    }
     &__inner {
       transition: 0.3s;
       &::before {
@@ -122,9 +106,6 @@
       .card-info {
         padding: 0 50px;
       }
-    }
-    &:nth-child(10) {
-      display: none;
     }
   }
 }

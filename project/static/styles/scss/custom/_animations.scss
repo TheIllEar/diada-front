@@ -9,3 +9,19 @@
         background-position: 0% 50%;
     }
 }
+
+@keyframes animationHideBlock {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}

@@ -7,7 +7,7 @@
    *
    *  ############################################################
    */
-  app.modules.scroll_down = {
+  app.modules.scrollDown = {
     _selectors: {
       body: 'body',
       btn: '[data-app-arrow-down]',

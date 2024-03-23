@@ -1,0 +1,7 @@
+<div class="filter" data-app-filter>
+  <div class="filter__items">
+    {% for item in page.contentType %} 
+    <div class="filter__item{% if page.request.query.content_type|upper == item or (loop.first and (page.request.originalUrl == '' or not page.request.query.content_type)) %} active{% endif %}" data-app-filter-item="{{item}}">{{item}}</div> 
+    {% endfor %}
+  </div>
+</div>

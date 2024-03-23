@@ -7,6 +7,9 @@
       <h1>{{page.caption}}</h1>
     {% endif %}
   </div>
+  {% if page.contentType %}
+      {% include 'components/filter.html' %}
+  {% endif %}
   {% include 'components/catalog.html' %}
 </section>
 {% endblock %}

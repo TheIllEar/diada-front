@@ -96,6 +96,10 @@ input[type='number'] {
   display: none;
 }
 
+.only-desktop {
+  display: none;
+}
+
 .hidden {
   display: none;
 }
@@ -142,6 +146,12 @@ textarea:focus {
     &::-webkit-scrollbar {
       width: 7px;
     }
+  }
+  .only-desktop {
+    display: inherit;
+  }
+  .not-desktop {
+    display: none;
   }
 }
 

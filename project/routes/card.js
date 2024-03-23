@@ -1,16 +1,15 @@
 /**
  * Карточка
  */
-
 import { Router } from 'express';
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 import cron from 'node-cron';
 import { _getImg, _getImages, _getVideos } from '../custom/helper.js';
+import { ADMIN_URL } from '../custom/constants.js';
 
 const router = Router(),
-  urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&populate=CardImages&populate=Video&populate=Thumbs&sort=Sort',
-  // urlProjects = 'http://localhost:1337/api/projects?populate=Img&populate=CardImages&populate=Video&populate=Thumbs&sort=Sort',
+  urlProjects = ADMIN_URL + '/api/projects?populate=Img&populate=CardImages&populate=Video&populate=Thumbs&sort=Sort',
   getCards = async () => {
     try {
       let responseProject = await fetch(urlProjects),
@@ -32,8 +31,7 @@ const router = Router(),
   },
   projectsHandler = (_projects) => {
     _projects.data.forEach((_project) => {
-      const _cardUrl = `https://diada-admin.herokuapp.com/api/projects/${_project.id}?populate=Img&populate=CardImages&populate=Video&populate=Thumbs`;
-      // const _cardUrl = `http://localhost:1337/api/projects/${_project.id}?populate=Img&populate=CardImages&populate=Video&populate=Thumbs`;
+      const _cardUrl = `${ADMIN_URL}/api/projects/${_project.id}?populate=Img&populate=CardImages&populate=Video&populate=Thumbs`;
       router.get(`/work/${_project.attributes.Slug}`, async function (req, res, next) {
         try {
           const responseCard = await fetch(_cardUrl),

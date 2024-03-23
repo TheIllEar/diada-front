@@ -1,37 +1,37 @@
-.container-works {
-  .catalog {
-    &-cards {
-      grid-template-areas: inherit;
-      grid-template-columns: repeat(2, 1fr);
-      .card {
-        grid-area: inherit;
-        &:nth-child(10) {
-          display: block;
-        }
-      }
-    }
-    &-all {
-      display: none;
-    }
-  }
-  @include breakpoint($tablet) {
-    .catalog {
-      &-cards {
-        grid-template-columns: repeat(3, 1fr);
-        .card {
-          &:nth-child(9),
-          &:nth-child(10) {
-            display: block;
-          }
-        }
-      }
-    }
-  }
-  @include breakpoint($desktop) {
-    .catalog {
-      &-cards {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-  }
-}
+// .container-works {
+// .catalog {
+//   &-cards {
+//     grid-template-areas: inherit;
+//     grid-template-columns: repeat(2, 1fr);
+//     .card {
+//       grid-area: inherit;
+//       &:nth-child(10) {
+//         display: block;
+//       }
+//     }
+//   }
+//   &-all {
+//     display: none;
+//   }
+// }
+// @include breakpoint($tablet) {
+//   .catalog {
+//     &-cards {
+//       grid-template-columns: repeat(3, 1fr);
+//       .card {
+//         &:nth-child(9),
+//         &:nth-child(10) {
+//           display: block;
+//         }
+//       }
+//     }
+//   }
+// }
+// @include breakpoint($desktop) {
+//   .catalog {
+//     &-cards {
+//       grid-template-columns: repeat(4, 1fr);
+//     }
+//   }
+// }
+// }

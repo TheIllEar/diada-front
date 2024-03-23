@@ -2,6 +2,7 @@
 $mobile: 320px;
 $middle-mobile: 510px;
 $tablet: 720px;
+$midle-tablet: 900px;
 $desktop: 1200px;
 $large: 1560px;
 
@@ -19,37 +20,24 @@ $color_black: #000;
 $color_black2: #353535;
 
 //Fonts
-// $font_size_nav_mobile: 16px;
-// $font_size_nav_tablet: 18px;
-
 $font_size_nav_mobile: 19px;
-$font_size_nav_tablet: 19px;
-
-// $font_size_footer_nav_mobile: 14px;
-// $font_size_footer_nav_tablet: 17px;
+$font_size_nav_tablet: 18px;
 
 $font_size_footer_nav_mobile: 16px;
 $font_size_footer_nav_tablet: 19px;
-
-// $font_size_title_mobile: 16px;
-// $font_size_title_tablet: 18px;
-// $font_size_title_desktop: 21px;
-// $font_size_title_large: 25px;
 
 $font_size_title_mobile: 26px;
 $font_size_title_tablet: 26px;
 $font_size_title_desktop: 21.5px;
 $font_size_title_large: 21.5px;
 
-// $font_size_kind_mobile: 13px;
-// $font_size_kind_tablet: 15px;
-// $font_size_kind_desktop: 18px;
-// $font_size_kind_large: 22px;
-
 $font_size_kind_mobile: 20px;
 $font_size_kind_tablet: 20px;
 $font_size_kind_desktop: 16px;
 $font_size_kind_large: 16px;
+
+$font_size_filter_item_mobile: 16px;
+$font_size_filter_item_tablet: 19px;
 
 //Radius
 $little_radius: 4px;
@@ -66,6 +54,5 @@ $default_shadow: 1px 0 15px 2px rgba(0, 0, 0, 0.4);
 
 //Other
 $max_container: 1200px;
-// $shadow_default: 0 0 30px -10px $color_grey2;
 $shadow_default: 0 0 22px 2px $color_grey2;
 $shadow_default_bottom: 0 8px 12px -2px $color_grey2;

@@ -69,7 +69,6 @@
 }
 .nav-link {
   color: $color_white;
-  // font-size: 21px;
   font-size: 44px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -80,7 +79,6 @@
   background-color: $color_main;
 }
 .nav-list {
-  // padding-bottom: 50px;
   margin-bottom: 80px;
   overflow: scroll;
   height: calc(100% - 150px);
@@ -111,14 +109,51 @@
   bottom: 20px;
   width: 100%;
   text-align: center;
-  .mail {
-    margin-bottom: 15px;
-    &__link {
-      color: $color_main;
-      letter-spacing: 1px;
-      // font-size: 17px;
-      font-size: 18px;
-      font-weight: 600;
+  .nav-bar__item {
+    margin-bottom: 12px;
+  }
+  .nav-bar__link {
+    color: $color_main;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .social-list {
+    position: relative;
+    padding-top: 15px;
+    margin-top: 15px;
+    @include fake() {
+      top: 0;
+      left: 0;
+      right: 0;
+      width: calc(100% - 20px);
+      height: 2px;
+      margin: 0 auto;
+      opacity: 0.8;
+      background-color: $color_white;
+    }
+    &.social-list--masked {
+      justify-content: center;
+      margin-bottom: 10px;
+      &::after {
+        display: none;
+      }
+      .social-list__item {
+        background-color: inherit;
+        border: none;
+        margin: 0 7px;
+      }
+      .nav-link {
+        background: $color_white;
+        width: 29px;
+        height: 29px;
+        &--telegram {
+          mask-image: url(../../img/telegram_r.svg);
+        }
+        &--whatsapp {
+          mask-image: url(../../img/whatsapp_r.svg);
+        }
+      }
     }
   }
 }

@@ -1,14 +1,14 @@
 /**
  * О компании
  */
-
 import { Router } from "express";
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 import { _getImg, _getProjects } from '../custom/helper.js';
+import { ADMIN_URL } from '../custom/constants.js';
 
 const router = Router(),
-  urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=Img';
+  urlPages = ADMIN_URL + '/api/pages?populate=Img';
 
 router.get("/services", async function (req, res, next) {
     try {

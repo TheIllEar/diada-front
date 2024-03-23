@@ -40,10 +40,15 @@
       width: 21px;
     }
     &--telegram {
-      background-image: url(../../img/telegram_r.svg);
+      background-image: url(../../img/telegram_r_social.svg);
+      height: 24px;
+      width: 24px;
     }
     &--soundcloud {
       background-image: url(../../img/soundcloud_r.svg);
+    }
+    &--whatsapp {
+      background-image: url(../../img/whatsapp_r.svg);
     }
   }
   @include breakpoint($tablet) {

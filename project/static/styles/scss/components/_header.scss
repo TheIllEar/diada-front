@@ -31,7 +31,6 @@
     }
   }
   @include breakpoint($tablet) {
-    // height: 95px;
     &-list {
       display: flex;
       width: 40%;
@@ -79,15 +78,38 @@
       &--right {
         margin-left: auto;
         justify-content: flex-end;
+        align-items: center;
       }
     }
     .logo {
-      // width: 74px;
       &__img {
         background-size: contain;
-        // background-image: url(../../img/logo.png);
-        // height: 70px;
         height: 45px;
+      }
+    }
+    .social-list {
+      justify-content: end;
+      padding: 0;
+      width: fit-content;
+      &__item {
+        border: none;
+        width: fit-content;
+        margin-right: 19px;
+      }
+      .nav-link {
+        &--telegram {
+          background-image: url(../../img/telegram_r.svg);
+        }
+        &--phone {
+          background-image: url(../../img/phone_r.svg);
+          height: 22px;
+          width: 22px;
+        }
+        &--mail {
+          background-image: url(../../img/mail_r.svg);
+          height: 26px;
+          width: 26px;
+        }
       }
     }
   }
@@ -99,6 +121,13 @@
     }
     &__inner {
       padding: 12px $desktop_offset;
+    }
+    .social-list {
+      &__item {
+        &.not-desktop {
+          display: none;
+        }
+      }
     }
   }
 }

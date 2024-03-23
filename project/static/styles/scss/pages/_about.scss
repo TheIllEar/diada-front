@@ -9,7 +9,6 @@
         flex-direction: column;
       }
       &__item {
-        // margin-bottom: 18px;
         margin-bottom: 35px;
         color: $color_black2;
         display: flex;
@@ -36,7 +35,6 @@
         .desc {
           margin-top: 16px;
           font-weight: 400;
-          // font-size: $font_size_kind_mobile;
           font-size: 22px;
           color: $color_black2;
           &__title {
@@ -45,6 +43,27 @@
             font-style: italic;
             color: $color_black;
           }
+        }
+      }
+      .social-list {
+        flex-direction: column;
+        align-items: center;
+        &__item {
+          margin-top: 15px;
+          border: none;
+          width: fit-content;
+        }
+        .nav-link {
+          margin-right: 6px;
+          height: 30px;
+          width: 30px;
+          &--telegram {
+            background-image: url(../../img/telegram_r.svg);
+          }
+        }
+        .nav-text {
+          color: $color_accent;
+          font-weight: 700;
         }
       }
     }
@@ -61,13 +80,11 @@
     .social-list {
       max-width: 400px;
       margin: 0 auto;
-      margin-top: -11px;
     }
     .contact-link {
       color: $color_accent;
-      margin-top: 2px;
+      margin-top: 16px;
       font-style: normal;
-      // font-size: 15px;
       font-size: 24px;
       font-weight: 700;
     }

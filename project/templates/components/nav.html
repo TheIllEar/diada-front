@@ -20,8 +20,15 @@
       {% endfor %}
     </ul>
     <div class="nav-bar__footer">
-      <div class="mail">
-        <a href="mailto:diada.prod@gmail.com" class="mail__link">diada.prod@gmail.com</a>
+      <ul class="social-list social-list--masked">
+        <li class="social-list__item"><a href="https://t.me/ufsound" target="_blank" class="nav-link nav-link--telegram"></a></li>
+        <li class="social-list__item"><a href="https://wa.me/+79966276231" target="_blank" class="nav-link nav-link--whatsapp"></a></li>
+      </ul>
+      <div class="nav-bar__item nav-bar--phone">
+        <a href="tel:+79966276231" class="nav-bar__link">+79966276231</a>
+      </div>
+      <div class="nav-bar__item nav-bar--mail">
+        <a href="mailto:diada.prod@gmail.com" class="nav-bar__link">diada.prod@gmail.com</a>
       </div>
       {% include "components/social_list.html" %}
     </div>

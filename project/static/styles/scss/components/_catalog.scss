@@ -28,14 +28,8 @@
   }
   @include breakpoint($middle-mobile) {
     &-cards {
-      display: grid;
-      place-items: center;
-      grid-template-areas:
-        'c1 c1 c1 c1  c1 c1 c1 c1  c1 c1 c1 c1'
-        'c2 c2 c2 c2  c2 c2 c3 c3  c3 c3 c3 c3'
-        'c4 c4 c4 c4  c4 c4 c5 c5  c5 c5 c5 c5'
-        'c6 c6 c6 c6  c6 c6 c7 c7  c7 c7 c7 c7'
-        'c8 c8 c8 c8  c8 c8 c9 c9  c9 c9 c9 c9';
+      display: flex;
+      flex-wrap: wrap;
     }
   }
   @include breakpoint($tablet) {
@@ -44,28 +38,8 @@
         font-size: 18px;
       }
     }
-    &-cards {
-      grid-template-areas:
-        'c1 c1 c1 c1  c1 c1 c2 c2  c2 c2 c2 c2'
-        'c3 c3 c3 c3  c4 c4 c4 c4  c5 c5 c5 c5'
-        'c6 c6 c6 c6  c7 c7 c7 c7  c8 c8 c8 c8';
-    }
   }
   @include breakpoint($desktop) {
     margin-bottom: 70px;
-    &-cards {
-      grid-template-areas:
-        'c1 c1 c1 c1  c1 c1 c2 c2  c2 c2 c2 c2'
-        'c3 c3 c3 c4  c4 c4 c5 c5  c5 c6 c6 c6'
-        'c7 c7 c7 c8  c8 c8 c9 c9  c9 c10 c10 c10';
-    }
-  }
-  @include breakpoint($large) {
-    &-cards {
-      grid-template-areas:
-        'c1 c1 c1 c1  c2 c2 c2 c2  c3 c3 c3 c3'
-        'c4 c4 c4 c4  c5 c5 c5 c5  c6 c6 c6 c6'
-        'c7 c7 c7 c7  c8 c8 c8 c8  c9 c9 c9 c9';
-    }
   }
 }

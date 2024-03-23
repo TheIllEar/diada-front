@@ -3,14 +3,13 @@
  */
 
 // import { Router } from 'express';
-// import fetch from 'node-fetch';
+// import fetch from 'node-fetch'; 
 // import chalk from 'chalk';
 // import { _getImg, _getProjects } from '../custom/helper.js';
 
 // const router = Router(),
 //   urlPages = 'https://diada-admin.herokuapp.com/api/pages?populate=Img',
 //   urlProjects = 'https://diada-admin.herokuapp.com/api/projects?populate=Img&sort=Sort';
-// // urlProjects = 'http://localhost:1337/api/projects?populate=Img&sort=Sort';
 
 // router.get('/works', async function (req, res, next) {
 //   try {

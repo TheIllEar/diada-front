@@ -2,8 +2,7 @@ const /**
    * Получаем изображение
    */
   _getImg = (_img) => {
-    let 
-      _imgDefult = [], 
+    let _imgDefult = [],
       _imgSmall = [];
 
     if (_img) {
@@ -22,15 +21,14 @@ const /**
    * Получаем изображения
    */
   _getImages = (_images) => {
-    let 
-      _defultImages = [],
+    let _defultImages = [],
       _smallImages = [];
 
     if (_images) {
-        _images.forEach((_img) => {
+      _images.forEach((_img) => {
         let _imgDefult = _img.attributes.formats.hasOwnProperty('medium') ? _img.attributes.formats.medium.url : _img.attributes.formats.thumbnail.url,
           _imgSmall = _img.attributes.formats.hasOwnProperty('small') ? _img.attributes.formats.small.url : _imgDefult;
-          
+
         if (_imgDefult && _imgSmall) {
           _defultImages.push(_imgDefult);
           _smallImages.push(_imgSmall);
@@ -78,12 +76,17 @@ const /**
         title: _project.attributes.Title,
         service: _project.attributes.Service,
       };
+      // Add img
       if (_project.attributes.Img && _project.attributes.Img.data) {
         let _img = _project.attributes.Img.data,
           { _imgDefult } = _getImg(_img),
           { _imgSmall } = _getImg(_img);
         project.img = _imgDefult;
         project.imgMobile = _imgSmall;
+      }
+      // Add contentType
+      if (_project.attributes.ContentType) {
+        project.contentType = _project.attributes.ContentType.split(',').map((type) => type.trim().toUpperCase());
       }
       projects.push(project);
     });
