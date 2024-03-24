@@ -72,8 +72,9 @@ router.get('/', async function (req, res, next) {
               originalUrl: req.originalUrl.slice(1),
             };
             if (page.request.query.content_type) {
+              const formatedType = page.request.query.content_type.replace(/_/g, ' ').toUpperCase();
               projects.forEach((_project) => {
-                if (_project.contentType && _project.contentType.indexOf(page.request.query.content_type.toUpperCase()) !== -1) {
+                if (_project.contentType && _project.contentType.indexOf(formatedType) !== -1) {
                   _project.visible = true;
                 }
               });

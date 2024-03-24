@@ -26,9 +26,13 @@
       }
     }
   }
+  &-cards {
+    display: flex;
+    flex-direction: column;
+  }
   @include breakpoint($middle-mobile) {
     &-cards {
-      display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
     }
   }

@@ -57,7 +57,7 @@
       if (activeItem) activeItem.classList.remove(`${this._classes.active}`);
       target.classList.add(`${this._classes.active}`);
       if (contentType !== this._vars.search_value) {
-        URL += '/?content_type=' + contentType.toLowerCase();
+        URL += '/?content_type=' + contentType.replace(/ /g, '_').toLowerCase();
       }
       window.history.pushState({ url: URL }, '', URL);
     },
