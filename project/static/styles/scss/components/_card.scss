@@ -1,5 +1,5 @@
 .card {
-  transition: 0.3s;
+  transition: 0.2s;
   position: relative;
   text-align: center;
   width: 0;
@@ -11,7 +11,7 @@
     width: 100%;
   }
   &.hide {
-    animation: animationHideBlock 0.3s;
+    animation: animationHideBlock 0.2s;
     animation-fill-mode: forwards;
   }
   &__inner {
@@ -57,7 +57,7 @@
     }
   }
   @include breakpoint($middle-mobile) {
-    transition: 0.2s;
+    transition: 0.1s;
     &.active {
       width: 50%;
     }
