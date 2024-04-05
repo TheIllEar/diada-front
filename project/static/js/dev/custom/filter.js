@@ -74,21 +74,17 @@
         cards.forEach((_card) => {
           if (_card.dataset.appContentType.indexOf(contentType) === -1) {
             _card.classList.add(this._classes.hidden);
-            setTimeout(() => {
-              _card.classList.remove(this._classes.active);
-            }, 300);
+            _card.classList.remove(this._classes.active);
           }
         });
-        setTimeout(() => {
-          cards.forEach((_card) => {
-            if (_card.dataset.appContentType.indexOf(contentType) !== -1) {
-              _card.classList.remove(this._classes.hidden);
-              if (!_card.classList.contains(this._classes.active)) {
-                _card.classList.add(this._classes.active);
-              }
+        cards.forEach((_card) => {
+          if (_card.dataset.appContentType.indexOf(contentType) !== -1) {
+            _card.classList.remove(this._classes.hidden);
+            if (!_card.classList.contains(this._classes.active)) {
+              _card.classList.add(this._classes.active);
             }
-          });
-        }, 50);
+          }
+        });
       } else {
         cards.forEach((_card) => {
           _card.classList.remove(this._classes.hidden);
